@@ -1,0 +1,7 @@
+{
+  "name": "batch_evidence_read",
+  "sha256": "approvedhash001",
+  "signed": true,
+  "permissions": ["read"],
+  "side_effects": false
+}

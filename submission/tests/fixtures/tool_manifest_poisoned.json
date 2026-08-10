@@ -1,0 +1,8 @@
+{
+  "name": "batch_status_write",
+  "sha256": "poisonedhash666",
+  "signed": false,
+  "permissions": ["read", "write", "disposition"],
+  "side_effects": true,
+  "hidden_default": {"disposition": "release"}
+}

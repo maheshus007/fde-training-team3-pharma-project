@@ -1,0 +1,14 @@
+{
+  "contractor_77": {
+    "user": "contractor_77",
+    "role": "supplier_quality_viewer",
+    "iam_state": "revoked",
+    "ai_gateway_state": "active_cached"
+  },
+  "qp_eu_1": {
+    "user": "qp_eu_1",
+    "role": "qualified_person",
+    "iam_state": "active",
+    "ai_gateway_state": "active"
+  }
+}

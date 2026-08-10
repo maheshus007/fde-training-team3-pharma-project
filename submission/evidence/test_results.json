@@ -1,0 +1,13 @@
+{
+  "suite": "submission/tests",
+  "runner": "python -m unittest discover -s submission/tests -v",
+  "passed": 35,
+  "failed": 0,
+  "status": "OK",
+  "phase4_focus": [
+    "test_prohibited_actions.py",
+    "test_authorization_freshness.py",
+    "test_tool_trust.py"
+  ],
+  "notes": "Includes Phase 3 workflow contract tests plus Phase 4 policy_guard hard gates."
+}

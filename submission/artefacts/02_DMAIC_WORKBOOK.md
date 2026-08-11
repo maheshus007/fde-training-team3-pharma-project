@@ -115,3 +115,19 @@ Accountable owner: Product/value lead. Completion criteria: each DMAIC phase has
 |---|---|---|---|---|
 | Evaluation/reliability lead | Reviewer | Required continuity metrics in Control | Added E-107 controls | 2026-08-10 |
 | GxP/quality lead | Reviewer | Required automation-bias failure mode | Added FM-4 | 2026-08-10 |
+
+## Prompt 08 thin Improve notes (2026-08-11)
+
+1. **Token/retrieval caps:** max 3 inference calls, 2048 tokens, T=0, CQ-id allowlist, purpose filters on graph.  
+2. **No blind model retry:** invalid JSON discarded; rules continue; no retry loop without diagnosis.  
+3. **Control metrics:** NFR-01..16 (latency, budgets, schema 100%, prohibited=0, tests without Azure keys).  
+4. **Open ambiguities that would waste build:** Azure deployment name (cloud demo only); CAPA auto-link blocked; INJ-044 out of scope.
+
+## Prompt 10 thin Improve sequencing (2026-08-11)
+
+1. **Must-fix / Measure-first:** T-001 enum; T-002 health envelope; T-003 stubs; T-004 authz+purpose; T-005..T-008 graph/CQ/ontology **green on GraphPort/ontology modules** before engines (do not wait for T-013).  
+2. **Deferred Overproduction / Model waste:** live Azure/Cosmos (T-014/T-015 live); CAPA auto-link; INJ-044; WCAG AA; inspection export FR-X-05; legal-hold delete API.  
+3. **Assumption tests:** CQ-1/2/3/6 on assessment GraphPort; CQ-5 IDMP non-merge; CQ-8/9 via existing tool_trust + authz tests — reduce “KG/auth works” Unknown before cloud.  
+4. **Waiting:** T-014/T-015 live wait on credentials — not on evidence pack. INJ-070 hash pin is assessment-testable without live Azure (mismatch → stub).
+
+Full Prompt 09 DOWNTIME register is still pending; this lens is sequencing only. Structural reopen = **cleared** (artefacts 10/11).

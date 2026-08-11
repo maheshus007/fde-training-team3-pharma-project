@@ -1,0 +1,10 @@
+{
+  "name": "aegis-sdd",
+  "layout": "ai-assisted-sdlc-scaffold",
+  "offline_compatible": true,
+  "cloud_required": false,
+  "product_root": "submission/aegis-sdd",
+  "scoring_shims": ["submission/src", "submission/app", "submission/tests", "submission/scripts"],
+  "spec_root": "submission/AgenticApp",
+  "nested_git": false
+}

@@ -9,6 +9,36 @@
     "user": "qp_eu_1",
     "role": "qualified_person",
     "iam_state": "active",
-    "ai_gateway_state": "active"
+    "ai_gateway_state": "active",
+    "purposes": ["batch_review_readiness"],
+    "object_ids": ["NCB204-B24071"]
+  },
+  "pv_assessor_1": {
+    "user": "pv_assessor_1",
+    "role": "pv_assessor",
+    "iam_state": "active",
+    "ai_gateway_state": "active",
+    "purposes": ["pv_intake"]
+  },
+  "pv_medical_1": {
+    "user": "pv_medical_1",
+    "role": "pv_medical",
+    "iam_state": "active",
+    "ai_gateway_state": "active",
+    "purposes": ["pv_intake"]
+  },
+  "auditor_1": {
+    "user": "auditor_1",
+    "role": "auditor",
+    "iam_state": "active",
+    "ai_gateway_state": "active",
+    "purposes": ["pv_intake"]
+  },
+  "supply_planner_1": {
+    "user": "supply_planner_1",
+    "role": "supply_planner",
+    "iam_state": "active",
+    "ai_gateway_state": "active",
+    "purposes": ["supply_options"]
   }
 }

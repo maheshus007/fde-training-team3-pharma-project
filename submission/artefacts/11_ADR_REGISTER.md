@@ -211,3 +211,14 @@ Across ADRs the recurring options were: (A) LLM-first agent with write tools; (B
 | GxP/quality lead | Reviewer | Add explicit human-in-the-loop ADR | ADR-009 | 2026-08-10 |
 | Security/privacy lead | Reviewer | Split tool signing from authority retrieval | ADR-004 and ADR-005 | 2026-08-10 |
 | Product/value lead | Reviewer | Keep deterministic-first aligned to no-AI comparison | ADR-001 cites INJ-003 | 2026-08-10 |
+
+---
+
+## Prompt 09 / 10 structural reopen gate (2026-08-11)
+
+| Field | Entry |
+|---|---|
+| Decision | **cleared** |
+| ADR reopen | **Not required** for Prompt 10 handoff. ADR-AA-012 (`supply_options`) and CQ proofs are **implementation tasks** (T-001, T-006/T-007), not architecture reopens |
+| Residual | Full Prompt 09 DMAIC workshop pending; ADR-AA-015 remains conditional on CQ tests (architecture review O-1) |
+| Recorded for | `submission/prompts/10_implementation_tasks.md` entry/exit |

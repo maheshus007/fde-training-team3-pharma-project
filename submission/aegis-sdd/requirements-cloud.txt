@@ -1,0 +1,5 @@
+# Optional product/demo extras. Assessment tests stay stdlib (no Azure keys).
+openai>=1.0
+langgraph>=0.2
+taipy>=4.0
+gremlinpython>=3.7

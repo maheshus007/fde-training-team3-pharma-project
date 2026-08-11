@@ -1,0 +1,17 @@
+---
+description: Build AEGIS AgenticApp from BUILD_SDD, not Prompt 11
+globs: submission/src/**/*.py,submission/app/**/*.py,submission/tests/**/*.py,submission/scripts/**/*.py,submission/runbooks/**/*.md,submission/AgenticApp/09_sdd_build/**
+alwaysApply: false
+---
+
+# AgenticApp SDD build
+
+When implementing the agentic app, **do not** follow `submission/prompts/11_product_and_build.md`.
+
+Follow, in order:
+
+1. `submission/AgenticApp/09_sdd_build/BUILD_SDD.md` (constitution)
+2. The current task in `submission/AgenticApp/09_sdd_build/TASK_INDEX.md`
+3. Only the spec paths that task lists (under `submission/AgenticApp/`)
+
+Implement product code in `submission/aegis-sdd/` (SDLC scaffold). Keep `submission/src`, `app`, `tests` as scoring shims. Unskip AC tests as the module lands. Assessment mode must pass without Azure packages. Workflow name is `supply_options`. Do not `git init` inside `aegis-sdd` unless asked.

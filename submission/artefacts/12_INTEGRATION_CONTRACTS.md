@@ -146,3 +146,25 @@ Team 3 extensions must bump a documented version and add compatibility tests; ha
 | Build lead | Reviewer | Require local fixtures fallback for offline tests | Fixtures under `submission/tests/fixtures/` | 2026-08-10 |
 | Domain/evidence lead | Reviewer | Spell out unit abstention vs silent convert | §4 table | 2026-08-10 |
 | Evaluation/reliability lead | Reviewer | Tie acceptance to unittest runner | §7 | 2026-08-10 |
+
+---
+
+## AgenticApp Prompt 08 addendum (2026-08-11)
+
+Working SRS (API, graph schema, NFRs, errors, modules) lives in `submission/AgenticApp/08_technical_design/`. This artefact remains the scored summary.
+
+| Topic | Contract |
+|---|---|
+| Runtime | `AEGIS_RUNTIME_MODE` = `assessment` (default) \| `cloud` \| `ai_disabled` |
+| Service | `submit_workflow` / `ack_human_review` / `query_graph` / `health` |
+| Responses | Unchanged package schemas; `execution_status: not_executed`; supply `no_side_effects: true` |
+| Workflow enum | `supply_options` only (policy_guard must match) |
+| Inference | Azure OpenAI in `cloud` via InferencePort; stub otherwise; T=0; max 3 calls; 2048 tokens; 15 s timeout |
+| Graph | Cosmos Gremlin in `cloud`; in-memory GraphPort in assessment; forbidden write labels listed in DATA_MODEL |
+| UI | Taipy calls `service.py` only |
+| Errors | Envelope `AEGIS-400/401/409/412/422/429/503/504` — not extra properties on workflow success JSON |
+| Idempotency | Input `idempotency_key` minLength 8; TTL 86400 s; conflict → AEGIS-409 |
+| Nested objects | Team 3 mandatory shapes in `INTERNAL_OBJECT_SHAPES.md` (contradiction/gap/abstention/PV/supply) |
+| Budget stop | Schema-valid pack + abstention `budget_exhausted` (not AEGIS-429 on submit) |
+
+Full files: `SRS_API_CONTRACTS.md`, `DATA_MODEL_AND_KG_SCHEMA.md`, `STATE_TRANSITIONS.md`, `NFRS.md`, `ERROR_AND_SECURITY.md`, `MODULE_LAYERING.md`, `TRACEABILITY_MATRIX.md`, `AMBIGUITY_CLOSURE.md`, `DEPLOYMENT_NOTES.md`.

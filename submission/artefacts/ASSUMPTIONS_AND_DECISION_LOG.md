@@ -204,3 +204,25 @@ Complements abbreviated A-013/A-014/D-011/D-012 above. New IDs use the A-20x / D
 | Date | Change | By |
 |---|---|---|
 | 2026-08-10 | Phase 2 detailed append: assumptions A-201..A-205 and decisions D-201..D-207; artefacts 05–09 and EVIDENCE_MAP completed under `submission/` | Team 3 |
+| 2026-08-10 | AgenticApp pipeline Steps 0–7: AA-001..008; D-KG-001 supersedes D-205 for offline evidence KG runtime (RER fallback retained); architecture review conditional-go to Prompt 08 | Team 3 |
+
+---
+
+## AgenticApp pipeline append (2026-08-10)
+
+### Assumptions
+
+| ID | Statement | Owner | Evidence / basis | Invalidation trigger | Status |
+|---|---|---|---|---|---|
+| AA-001 | `submission/AgenticApp/` is SDD working tree; scored SoT remains `submission/artefacts/` | Architecture | PROMPT_MAPPING exception | Examiner rejects dual-tree | Accepted |
+| AA-002 | Target product includes ontology + offline evidence KG + agentic orchestrator for A/B/C | Product | AgenticApp PRD | Scope change by board | Accepted |
+| AA-003 | Offline SQLite/in-memory KG meets package offline + vendor-exit needs | Architecture | KG design | CQ proofs require cloud graph | Accepted |
+| AA-005 | BR-01 measured baseline remains Unknown until evaluation | Evaluation | Discovery sufficiency | Measured baseline appears | Accepted |
+
+### Decisions
+
+| ID | Decision | Alternatives considered | Owner | Evidence | Date | Status |
+|---|---|---|---|---|---|---|
+| D-KG-001 | **Proposed only:** offline evidence KG runtime candidate (ADR-AA-015); D-205 remains accepted until CQ proofs + artefact 08 update; RER+C is default path | Keep D-205 only; Neo4j | Architecture | `KNOWLEDGE_GRAPH_DESIGN.md`; ADR-AA-015 proposed | 2026-08-10 | **Proposed** |
+| D-AA-001 | Proceed to Prompt 08 technical design after conditional architecture review | Pause for full artefact sync first; fail and redesign C4 | Architecture + Product | `AgenticApp/07_adrs/ARCHITECTURE_REVIEW.md` | 2026-08-10 | Accepted |
+| D-AA-002 | Product stack: Azure OpenAI + Taipy + Cosmos Gremlin; default runtime `assessment` with stub LLM and in-memory/RER graph so no secrets required | Stdlib-only product; cloud-only with no mocks | Architecture | `AgenticApp/00_plan/TECH_STACK.md`; ADR-AA-016..018 | 2026-08-11 | Accepted |

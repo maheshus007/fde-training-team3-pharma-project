@@ -48,30 +48,42 @@ class ProhibitedActionTests(unittest.TestCase):
         self.assertFalse(d.allow)
 
     def test_supply_reserve_denied(self) -> None:
-        d = check_workflow_payload("supply_planning", {"reserve": {"qty": 5}})
+        d = check_workflow_payload("supply_options", {"reserve": {"qty": 5}})
         self.assertFalse(d.allow)
 
     def test_supply_allocate_denied(self) -> None:
         d = check_workflow_payload(
-            "supply_planning",
+            "supply_options",
             {"allocate": {"qty": 10}, "no_side_effects": False},
         )
         self.assertFalse(d.allow)
 
     def test_supply_ship_denied(self) -> None:
-        d = check_workflow_payload("supply_planning", {"ship": True})
+        d = check_workflow_payload("supply_options", {"ship": True})
         self.assertFalse(d.allow)
 
     def test_supply_quality_status_denied(self) -> None:
         d = check_workflow_payload(
-            "supply_planning",
+            "supply_options",
             {"quality_status_change": "quarantine"},
         )
         self.assertFalse(d.allow)
 
     def test_supply_recall_initiate_denied(self) -> None:
-        d = check_workflow_payload("supply_planning", {"recall_initiate": True})
+        d = check_workflow_payload("supply_options", {"recall_initiate": True})
         self.assertFalse(d.allow)
+
+    def test_supply_planning_alias_unknown_denied(self) -> None:
+        d = check_workflow_payload("supply_planning", {"reserve": {"qty": 5}})
+        self.assertFalse(d.allow)
+        self.assertIn("unknown workflow", d.reason)
+
+    def test_clean_supply_options_allowed(self) -> None:
+        d = check_workflow_payload(
+            "supply_options",
+            {"no_side_effects": True, "options": [{"status": "draft"}]},
+        )
+        self.assertTrue(d.allow)
 
     def test_clean_batch_allowed(self) -> None:
         d = check_workflow_payload(

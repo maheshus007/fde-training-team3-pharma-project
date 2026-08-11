@@ -183,3 +183,14 @@ Events are advisory notifications and audit records only — never inventory or 
 | GxP/quality lead | Reviewer | Emphasize K-003 boundary in context diagram | Added §5 table citing E-406 | 2026-08-10 |
 | Security/privacy lead | Reviewer | Require kill switch on inference only, not whole advisory path | Clarified §4 sequence | 2026-08-10 |
 | Build lead | Reviewer | Point acceptance to contract tests under submission | Traceability updated | 2026-08-10 |
+
+---
+
+## Prompt 09 / 10 structural reopen gate (2026-08-11)
+
+| Field | Entry |
+|---|---|
+| Decision | **cleared** |
+| Reopen of artefacts 06–08 / C4 | **Not required** — no waste-driven container or context change from thin DMAIC notes |
+| Residual | Full Prompt 09 DOWNTIME workshop still pending; does **not** block Prompt 10/11 assessment build |
+| Recorded for | `submission/prompts/10_implementation_tasks.md` entry/exit |

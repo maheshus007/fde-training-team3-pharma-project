@@ -201,3 +201,109 @@ Cross-cutting definition of done for Phase 5 POC (extends E-901 §9):
 | GxP/quality lead | GxP | Separate prohibited tests per workflow | TEST-A-06/B-08/C-04 | 2026-08-10 |
 | Security/privacy lead | Security | SEC/PRI coverage for injects 065–070 / 035 | §4 tables | 2026-08-10 |
 | Evaluation lead | Evaluation | Planned test IDs stable for Phase 5/6 | Confirmed | 2026-08-10 |
+
+---
+
+## Prompt 08 H2 — Orphan / gap audit (2026-08-11)
+
+Recorded here per `submission/prompts/08_technical_design.md` (not a separate `traceability_gap_audit.md`). Detail: `submission/AgenticApp/08_technical_design/TRACEABILITY_MATRIX.md` + `INTERNAL_OBJECT_SHAPES.md`.
+
+| Gap type | Finding | Disposition |
+|---|---|---|
+| FR without AC | None for FR-A..F | OK |
+| BR without verifying AC | BR-D5 purpose → AEGIS-401 | Fixed in SRS |
+| AC without endpoint/contract | AC-F3 a11y | Assumed: keyboard on 4 Taipy pages; revisit Prompt 12 |
+| Endpoint without FR | `health`, `ingest_graph` | Infra / FR-E ingest |
+| Matching without number | PV duplicates | Assumed: all CSV rows; no extra cutoff; no merge. IDMP: exact→alias→stop |
+| Error envelope without AC | AEGIS-401/412/422 | AC-D2, AC-F1, AC-A4/B5/C3 |
+| AC-A6/A7/B3–B9/C5/D1/D3/E2 | Missing from first SRS draft | Closed in INTERNAL_OBJECT_SHAPES |
+
+No unmarked orphans on the in-scope build path. PUB-09–15 participant files open-blocked until Prompt 11/12.
+
+---
+
+## Prompt 10 — AC → test map and build sequence (2026-08-11)
+
+Prompt 10: **no** `task-00N.md` tree. Catalog: `submission/AgenticApp/09_sdd_build/TASK_INDEX.md`. Stubs under `submission/tests/test_ac_*.py` (skipped until Prompt 11).
+
+### AC → test
+
+| AC ID | Test task | Test file / case | Type | Status |
+|---|---|---|---|---|
+| AC-A1 | T-009 | `test_ac_batch.BatchAcTests.test_ac_a1_schema` | integration | **pass** |
+| AC-A2 | T-009 | `test_ac_a2_genealogy` | integration | **pass** |
+| AC-A3 | T-008/T-009 | ontology gate + `test_ac_a3_unit_abstain` | unit / integration | **pass** |
+| AC-A4 | T-001/T-009 | `test_ac_a4_disposition_rejected` + prohibited tests | unit | **pass** |
+| AC-A5 | T-009 | `test_ac_a5_ai_disabled` | integration | **pass** |
+| AC-A6 | T-009 | `test_ac_a6_oos_conflict` | integration | **pass** |
+| AC-A7 | T-009 | `test_ac_a7_qp_gap` | integration | **pass** |
+| AC-B1 | T-010 | `test_ac_pv` B1 | integration | **pass** |
+| AC-B2 | T-007/T-010 | `test_ac_b2_duplicates_include_pv1009` | integration | **pass** |
+| AC-B3 | T-010 | `test_ac_b3_clocks` | integration | **pass** |
+| AC-B4 | T-010 | `test_ac_b4_listedness` | integration | **pass** |
+| AC-B5 | T-010 | `test_ac_b5_final_reportability_rejected` + existing | unit | **pass** |
+| AC-B6 | T-010 | `test_ac_b6_ai_disabled` | integration | **pass** |
+| AC-B7 | T-010 | `test_ac_b7_meddra_versions` | integration | **pass** |
+| AC-B8 | T-010 | `test_ac_b8_sensitive_segment` | integration | **pass** |
+| AC-B9 | T-010 | `test_ac_b9_social_abstain` | integration | **pass** |
+| AC-C1 | T-011 | `test_ac_c1_schema_no_side_effects` | integration | **pass** |
+| AC-C2 | T-011 | `test_ac_c2_sh901_association` | integration | **pass** |
+| AC-C3 | T-001/T-011 | `test_ac_c3_reservation_rejected` + prohibited tests | unit | **pass** |
+| AC-C4 | T-011 | `test_ac_c4_ai_disabled` | integration | **pass** |
+| AC-C5 | T-011 | `test_ac_c5_channel_constraints` | integration | **pass** |
+| AC-D1 | T-012a | `test_ac_d1_poisoned_manifest` + `test_tool_trust.py` | unit | planned / existing |
+| AC-D2 | T-004 | freshness tests + `EntitlementStore` AEGIS-401 (**pass**); `test_ac_d2_stale_auth` still skipped until T-013 | unit | **partial pass** (T-004) |
+| AC-D3 | T-012c | `test_ac_d3_checkpoint_resume` | integration | planned |
+| AC-D4 | T-003/T-012b | T-003 stub `used=false` + no `openai` import (**pass**); `test_ac_d4_kill_switch` still skipped until T-012b | unit / integration | **partial pass** (T-003) |
+| AC-D5 | T-012c | `test_ac_d5_idempotency` | integration | planned |
+| AC-E1 | T-006 | `test_ac_e1_cq1_genealogy` | integration | **pass** |
+| AC-E2 | T-006 | `test_ac_e2_cq2_unit_abstain` | integration | **pass** |
+| AC-E3 | T-006 | `test_ac_e3_cq6_logger_pallet` | integration | **pass** |
+| AC-E4 | T-005 | `test_ac_e4_forbidden_edge` | unit | **pass** |
+| AC-E5 | T-007 | `test_ac_e5_cq3_pv1009` | integration | **pass** |
+| AC-F1 | T-013 | `test_ac_f1_ack_requires_viewed_conflicts` | integration | planned |
+| AC-F2 | T-016 | `test_ac_f2_app_main_exists` | smoke | planned |
+| AC-F3 | T-016 | keyboard-only; **deferred** WCAG AA | e2e | deferred (Prompt 12) |
+
+| AC / CQ | Test task | Test file / case | Type | Status |
+|---|---|---|---|---|
+| AC-D2 purpose | T-004 | `test_ac_platform.test_purpose_mismatch_denied` | unit | **pass** |
+| CQ-4 listedness | T-010 | same as AC-B4 (not a separate AC-E) | integration | mapped |
+| CQ-5 IDMP non-merge | T-008 | `test_ac_ontology.test_cq5_idmp_not_equal` | unit | **pass** |
+| CQ-7 channel constraints | T-011 | same as AC-C5 | integration | mapped |
+| CQ-8 manifest signed | T-012a | AC-D1 + `test_tool_trust.py` | unit | existing / planned |
+| CQ-9 entitlement fresh | T-004 | AC-D2 + `test_authorization_freshness.py` + entitlements adapter | unit | **pass** |
+
+### Alias — scored TEST-* ↔ AgenticApp AC-*
+
+| Scored artefact 09 | AgenticApp AC | Test module |
+|---|---|---|
+| TEST-A-01..07 | AC-A1..A7 | `test_ac_batch.py` (+ existing prohibited for A-06) |
+| TEST-B-01..09 | AC-B1..B9 | `test_ac_pv.py` |
+| TEST-C-01..05 | AC-C1..C5 | `test_ac_supply.py` |
+| TEST-X-01 | AC-D2 + purpose | `test_authorization_freshness.py`, `test_ac_platform.py` |
+| TEST-X-02 | additionalProperties | existing `test_workflow_contracts.py` |
+| TEST-X-03 | AC-D5 | `test_ac_orchestrator.py` |
+| TEST-X-04 | AC-D4 + AA-NFR-03..07 | `test_ac_orchestrator.py` |
+| TEST-X-05 export | — | **deferred** Prompt 12 |
+| TEST-NFR-01 offline | AA-NFR-09 assessment | T-017; **IDs must not be merged** |
+| TEST-NFR-05 a11y | AC-F3 | **deferred** WCAG AA; keyboard T-016 |
+| TEST-SEC-01 | AC-D2 | existing authz tests |
+| TEST-SEC-02 | AC-D1 | existing tool_trust |
+| TEST-SEC-03 | INJ-070 | existing model-hash + T-014 |
+| TEST-SEC-04/05 | — | **deferred** Prompt 12 |
+| TEST-GXP-01..03,06 | AC-A* provenance / AC-F1 | T-009 / T-013 |
+| TEST-GXP-04 INJ-031 | — | **deferred** Prompt 12 unless T-009 surfaces validation-state conflict |
+| TEST-GXP-05 legal hold | — | **deferred** (no delete API) |
+| TEST-PRI-01 | purpose mismatch | T-004 |
+| TEST-PRI-02 | AC-B8 | `test_ac_pv.py` |
+| TEST-PRI-03 | TEST-GXP-05 | deferred |
+| TEST-PRI-04/05 | — | **deferred** / flag-only |
+
+**NFR collision:** scored artefact `NFR-01` = offline package. AgenticApp SRS `NFR-01` = submit P95 ≤5 s. Catalog uses **AA-NFR-*** for SRS rows.
+
+### Sequence
+
+T-001 → T-002 → T-003 → T-004 → T-005 → T-006/T-007/T-008 → T-009 → T-010 → T-011; T-012a parallel after T-003; T-012b/c; T-013 → T-016 → T-017 → T-018. T-014/T-015 after T-003/T-005; **live** cloud calls blocked on secrets.
+
+Artefact `28_PRODUCTION_READINESS.md` **not** created (Stage 7). Build notes stay in TASK_INDEX. Audit: `submission/AgenticApp/09_sdd_build/P10_VALIDATION.md`.

@@ -146,16 +146,58 @@ p, label, span, li, .MuiTypography-root, .taipy-text {
 .status-warn { color: var(--warn) !important; }
 .status-bad { color: var(--danger) !important; }
 
-.detail-box {
-  background: #f7fbf9;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0.9rem 1rem;
-  min-height: 8rem;
-  white-space: pre-wrap;
-  line-height: 1.5;
+.results-grid {
+  align-items: stretch !important;
+  width: 100% !important;
+}
+
+.tree-pane,
+.detail-pane {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden;
+}
+
+.detail-box,
+.detail-box .MuiInputBase-root,
+.detail-box .MuiOutlinedInput-root {
+  background: #f7fbf9 !important;
+  border-radius: 12px !important;
+  min-height: 420px !important;
+  height: 420px !important;
+  align-items: flex-start !important;
+}
+
+.detail-box textarea,
+.detail-box .MuiInputBase-input,
+.detail-box .MuiOutlinedInput-input {
+  white-space: pre-wrap !important;
+  line-height: 1.55 !important;
   color: var(--ink) !important;
-  font-size: 0.95rem;
+  font-size: 0.95rem !important;
+  font-family: var(--font-body) !important;
+  overflow: auto !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.85rem 1rem !important;
+}
+
+/* Prevent Taipy text/markdown blocks from stacking over each other */
+.detail-pane .taipy-text,
+.detail-pane .taipy-text > * {
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+.detail-pane p {
+  margin: 0 0 0.35rem !important;
+  line-height: 1.5 !important;
 }
 
 .taipy-navbar {

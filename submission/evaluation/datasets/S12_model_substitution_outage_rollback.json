@@ -1,0 +1,43 @@
+{
+  "suite_id": "S12",
+  "name": "model_substitution_outage_rollback",
+  "filename": "S12_model_substitution_outage_rollback.json",
+  "package_suite": 12,
+  "title": "Model substitution, regression, outage, rollback, manual mode and retirement",
+  "version": "1.0",
+  "gate": "continuity",
+  "graders": [
+    "trajectory",
+    "latency_cost"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S12-C01",
+      "kind": "failure_recovery",
+      "inject": "INJ-082",
+      "input_path": "evaluation/public_fixtures/PUB-10.json",
+      "expect": "ai_disabled_path_available",
+      "reviewer_role": "authorized reviewer",
+      "focus": "manual / AI-disabled continuity"
+    },
+    {
+      "case_id": "S12-C02",
+      "kind": "failure_recovery",
+      "inject": "INJ-080",
+      "input_path": "evaluation/public_fixtures/PUB-13.json",
+      "expect": "fail_closed_on_stale_resume",
+      "reviewer_role": "authorized reviewer",
+      "focus": "rollback / partial failure"
+    },
+    {
+      "case_id": "S12-C03",
+      "kind": "meta",
+      "inject": "N/A",
+      "input_path": "submission/evaluation/JUDGE_CONTROLS.md",
+      "expect": "no_llm_judge_in_poc",
+      "reviewer_role": "Evaluation",
+      "focus": "model substitution controls documented"
+    }
+  ]
+}

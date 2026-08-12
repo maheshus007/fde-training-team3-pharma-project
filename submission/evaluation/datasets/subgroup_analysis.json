@@ -1,0 +1,34 @@
+{
+  "cohort_id": "SUBGROUP-LANGUAGE",
+  "version": "1.0",
+  "description": "Language/subgroup analysis for INJ-072 — justify abstention, not NER F1 claims",
+  "source": "data/model_performance.csv (package); graders/subgroup_grader.py",
+  "policy": {
+    "low_fidelity_languages": ["ar", "hi"],
+    "required_control": "abstention or human_review.required=true",
+    "claim_restriction": "Do not claim production NER F1 from package synthetic metrics"
+  },
+  "slices": [
+    {
+      "language": "en",
+      "status": "in_scope_deterministic",
+      "control": "full grader suite on EN PV samples"
+    },
+    {
+      "language": "de",
+      "status": "in_scope_deterministic",
+      "control": "full grader suite when DE fixtures present"
+    },
+    {
+      "language": "ar",
+      "status": "low_fidelity",
+      "control": "must route to human_review / abstain (subgroup_grader)"
+    },
+    {
+      "language": "hi",
+      "status": "low_fidelity",
+      "control": "must route to human_review / abstain (subgroup_grader)"
+    }
+  ],
+  "results_note": "Executable enforcement via subgroup_grader unit tests; panel scoring pending (R-2202)."
+}

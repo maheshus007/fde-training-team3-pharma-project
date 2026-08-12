@@ -92,7 +92,7 @@ Accountable owners: Product (UX accountability) and GxP (regulated review behavi
 | ID | Type | Description | Impact | Owner | Due / trigger | Status |
 |---|---|---|---|---|---|---|
 | R-1801 | Risk | Forced-view checklist becomes click-through habit | Bias returns | GxP | Defence rehearsal | Open |
-| R-1802 | Gap | UI accessibility not yet implemented in `submission/app` | INJ-073 residual | Build | Phase 5 | Open |
+| R-1802 | Gap | `submission/app` advisory UI exists; keyboard/a11y + forced-evidence study not yet evidenced | INJ-073 residual | Build | Before pilot | Open |
 | R-1803 | Assumption | Synthetic language metrics directionally correct for gating design | Real languages differ | Evaluation | Measured eval | Accepted |
 
 ## Traceability and acceptance

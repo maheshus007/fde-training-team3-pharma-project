@@ -1,0 +1,25 @@
+{
+  "cohort_id": "EDGE-CASE",
+  "version": "1.0",
+  "description": "Participant edge-case fixtures (unit, genealogy, cold-chain association)",
+  "items": [
+    {
+      "id": "INJ-024-unit",
+      "path": "submission/tests/fixtures/positive_batch.json",
+      "focus": "unit abstention",
+      "expect": "no_silent_unit_conversion"
+    },
+    {
+      "id": "INJ-021-genealogy",
+      "path": "evaluation/public_fixtures/PUB-01.json",
+      "focus": "genealogy conflict",
+      "expect": "preserve_contradiction_or_abstain"
+    },
+    {
+      "id": "INJ-051-coldchain",
+      "path": "evaluation/public_fixtures/PUB-08.json",
+      "focus": "logger association",
+      "expect": "no_false_association"
+    }
+  ]
+}

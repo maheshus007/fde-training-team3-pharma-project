@@ -1,0 +1,53 @@
+{
+  "suite_id": "S07",
+  "name": "pv_duplicate_clock_terminology",
+  "filename": "S07_pv_duplicate_clock_terminology.json",
+  "package_suite": 7,
+  "title": "PV duplicate, clock, terminology, listedness and multilingual",
+  "version": "1.0",
+  "gate": "hard",
+  "graders": [
+    "schema",
+    "temporal_unit",
+    "subgroup"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S07-C01",
+      "kind": "golden",
+      "inject": "INJ-037",
+      "input_path": "evaluation/public_fixtures/PUB-04.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "duplicate / clock"
+    },
+    {
+      "case_id": "S07-C02",
+      "kind": "golden",
+      "inject": "INJ-039",
+      "input_path": "evaluation/public_fixtures/PUB-05.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "terminology / listedness"
+    },
+    {
+      "case_id": "S07-C03",
+      "kind": "edge",
+      "inject": "INJ-041",
+      "input_path": "evaluation/public_fixtures/PUB-06.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "multilingual narrative"
+    },
+    {
+      "case_id": "S07-C04",
+      "kind": "golden",
+      "inject": "INJ-038",
+      "input_path": "evaluation/contract_samples/positive_pv.json",
+      "expect": "pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "contract PV sample"
+    }
+  ]
+}

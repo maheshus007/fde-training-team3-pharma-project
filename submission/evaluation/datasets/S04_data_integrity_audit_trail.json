@@ -1,0 +1,43 @@
+{
+  "suite_id": "S04",
+  "name": "data_integrity_audit_trail",
+  "filename": "S04_data_integrity_audit_trail.json",
+  "package_suite": 4,
+  "title": "Data-integrity, audit-trail and electronic-record trustworthiness",
+  "version": "1.0",
+  "gate": "hard",
+  "graders": [
+    "schema",
+    "evidence"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S04-C01",
+      "kind": "golden",
+      "inject": "INJ-022",
+      "input_path": "evaluation/contract_samples/positive_batch.json",
+      "expect": "pass",
+      "reviewer_role": "EU QP",
+      "focus": "schema + audit fields"
+    },
+    {
+      "case_id": "S04-C02",
+      "kind": "golden",
+      "inject": "INJ-038",
+      "input_path": "evaluation/contract_samples/positive_pv.json",
+      "expect": "pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "PV audit envelope"
+    },
+    {
+      "case_id": "S04-C03",
+      "kind": "edge",
+      "inject": "INJ-023",
+      "input_path": "evaluation/public_fixtures/PUB-02.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "EU QP",
+      "focus": "record trust / supersession"
+    }
+  ]
+}

@@ -23,6 +23,7 @@ Defines critical journeys, SLIs/SLOs, lineage and fallback behaviour given an **
 | E-2403 | `data/continuity_requirements.csv` | Continuity policy data | batch_review max_ai_outage_days=14, manual_runbook=required; pv_intake max_ai_outage_hours=**0**, manual_runbook=required; supply_planning 14 days | PV has zero AI outage tolerance for AI-dependent path → must have non-AI path always |
 | E-2404 | `data/cost_model.csv` | Cost model | observability $31,000/month | Budget exists; capability quality unknown |
 | E-2405 | PUB-10 evaluation | evaluate.py | reliability fixture recorded `not_implemented` for endpoint failover code | Honest gap |
+| E-2406 | `submission/evaluation/datasets/S12_model_substitution_outage_rollback.json`; `runbooks/AI_DISABLED.md` | Participant TEVV / ops | Outage/rollback/manual-mode suite + AI-disabled runbook filed | Drill evidence still open (R-2501) |
 
 ## 1. Critical user journeys
 

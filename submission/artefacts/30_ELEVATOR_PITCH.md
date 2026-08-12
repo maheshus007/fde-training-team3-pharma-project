@@ -5,10 +5,10 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — AEGIS-PHARMA capstone (individual names/roles pending; see A-001 in `01_BUSINESS_CASE.md`) |
-| Version / date | v0.1 draft — 2026-08-07 |
+| Version / date | v1.1 — 2026-08-12 |
 | Reviewers | Pending team review |
-| Status | Draft |
-| Related requirements / ADRs | All artefacts 01–29; submission evidence JSON |
+| Status | Current |
+| Related requirements / ADRs | All artefacts 01–29; `submission/evaluation/`; submission evidence JSON |
 
 ## Purpose
 
@@ -20,14 +20,14 @@ Provides the 60-second pitch, five-minute narrative, and the explicit decision w
 |---|---|---|---|---|
 | E-3001 | `01_BUSINESS_CASE.md` | Prior | Lead-time / evidence-hunt problem; AI only after non-AI options | Problem frame |
 | E-3002 | `14_COMPUTER_SOFTWARE_ASSURANCE.md` / `28_PRODUCTION_READINESS.md` | Prior | No AI pilot GO | Hard boundary |
-| E-3003 | `submission/evidence/{test,evaluation,run}_*.json` | Runs | 51 tests pass; 11/15 fixtures pass; 4 NI honest; workflows schema-safe | POC proof |
+| E-3003 | `submission/evidence/{test,evaluation}_results.json` | Runs 2026-08-12 | 46 tests pass; evaluate 63 pass / 0 fail / 4 NI; TEVV harness present | POC proof |
 | E-3004 | Challenge injects (e.g. SEC-1/2, GXP-SUM-1, QR-11, DSR-17, DT-2) | Challenge data | Failures are real in the estate, not hypothetical | Credibility |
 
 ## 1. 60-second pitch
 
 | Item / question | Evidence-based response | Decision / owner | Acceptance evidence |
 |---|---|---|---|
-| Pitch | NovaCura’s batch, PV and supply teams lose time to contradictory brownfield evidence — and the AI platform meant to help is itself unvalidated: summariser hash mismatch, unblocked exfiltration/DoW patterns, stale entitlements, open AI outage. We built a **fail-closed, deterministic support layer** that reconciles and cites evidence, clusters PV duplicates, drafts non-executing supply options, and **refuses** compromised models, revoked users, oversized loops and ambiguous deletions. Tests pass; we are **not** asking to turn AI inference on. We are asking to fund remediation to the NO-GO checklist before any supervised pilot. | Capstone team | E-3001–E-3004 |
+| Pitch | NovaCura’s batch, PV and supply teams lose time to contradictory brownfield evidence — and the AI platform meant to help is itself unvalidated: summariser hash mismatch, unblocked exfiltration/DoW patterns, stale entitlements, open AI outage. We built a **fail-closed, deterministic support layer** that reconciles and cites evidence, clusters PV duplicates, drafts non-executing supply options, and **refuses** compromised models, revoked users, oversized loops and ambiguous deletions. Tests and the TEVV harness pass with honest gaps labelled; we are **not** asking to turn AI inference on. We are asking to fund remediation to the NO-GO checklist before any supervised pilot. | Capstone team | E-3001–E-3004 |
 
 ## 2. Five-minute executive narrative
 
@@ -35,9 +35,9 @@ Provides the 60-second pitch, five-minute narrative, and the explicit decision w
 |---|---|
 | 1. Problem | Evidence lead time and release risk driven by genealogy conflicts, missing packet items, open deviations — not lack of a chatbot (artefact 01–02). |
 | 2. Estate truth | AI-EVIDENCE failed validation tests; GXP-SUM-1 integrity broken; SEC-1/2 were not blocked; contractor cache stale >2 days; DT-2 still open. |
-| 3. Intervention | Three bounded workflows + gateway/gates; schemas forbid side effects; offline mode is default. |
-| 4. Proof | 51 unit tests; contract tests; 11 public fixtures gated; 4 gaps labelled `not_implemented` rather than faked. |
-| 5. Ask | Accept NO-GO for pilot; approve 90-day P0 remediation (integrity, residency/consent, runbooks, tool allow-list); keep deterministic assist in controlled demo use. |
+| 3. Intervention | Three bounded workflows + gateway/gates; schemas forbid side effects; offline mode is default; evaluation suites S01–S12 + graders. |
+| 4. Proof | 46 unit/grader tests; contract tests; evaluate 63/0/4 with PUB-10/12/14/15 deep paths labelled `not_implemented` rather than faked. |
+| 5. Ask | Accept NO-GO for pilot; approve 90-day P0 remediation (integrity, residency/consent, continuity drill); keep deterministic assist in controlled demo use. |
 
 ## 3. Problem and measurable impact
 
@@ -58,14 +58,14 @@ Provides the 60-second pitch, five-minute narrative, and the explicit decision w
 
 | Item / question | Evidence-based response | Decision / owner | Acceptance evidence |
 |---|---|---|---|
-| Strongest boundary | Fail closed: no verified model → no inference; revoked IAM → deny despite cache; unknown hold link → abstain deletion; outputs cannot carry disposition language or side effects. | Capstone team | E-3003; src gates |
+| Strongest boundary | Fail closed: no verified model → no inference; revoked IAM → deny despite cache; unknown hold link → abstain deletion; outputs cannot carry disposition language or side effects. | Capstone team | E-3003; src gates; evaluation graders |
 
 ## 6. Evidence and residual risk
 
 | Item / question | Evidence-based response | Decision / owner | Acceptance evidence |
 |---|---|---|---|
-| Evidence | Artefacts 01–29; evidence JSON; challenge CSVs cited throughout. | Capstone team | E-3003, E-3004 |
-| Residual risk | Human over-trust without UI; OT ransomware path; residency still violated in estate; vendor concentration; 4 fixtures unimplemented; validation still failed. | CQO | Artefact 28 |
+| Evidence | Artefacts 01–29; evaluation harness; evidence JSON; challenge CSVs cited throughout. | Capstone team | E-3003, E-3004 |
+| Residual risk | Human over-trust / incomplete a11y; OT ransomware path; residency still violated; vendor concentration; 4 deep fixtures unimplemented; validation still failed; continuity drill not recorded. | CQO | Artefact 28 |
 
 ## 7. Decision requested
 
@@ -74,7 +74,7 @@ Provides the 60-second pitch, five-minute narrative, and the explicit decision w
 | Supervised AI inference pilot | GO / NO-GO | **NO-GO** (E-3002) |
 | Continue deterministic fail-closed assist for defence/training use | Approve / Reject | **Approve** |
 | Fund 90-day P0 remediation backlog | Approve / Defer | **Approve** (artefact 29) |
-| Next checkpoint | Date TBD | Re-open pilot only when artefact 28 §7 is fully green |
+| Next checkpoint | After P0 drill + integrity plan | Re-open pilot only when artefact 28 §7 is fully green |
 
 ## Risks, assumptions and unresolved gaps
 

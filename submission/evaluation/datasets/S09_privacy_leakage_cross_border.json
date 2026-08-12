@@ -1,0 +1,33 @@
+{
+  "suite_id": "S09",
+  "name": "privacy_leakage_cross_border",
+  "filename": "S09_privacy_leakage_cross_border.json",
+  "package_suite": 9,
+  "title": "Privacy leakage, cross-border and purpose-limitation",
+  "version": "1.0",
+  "gate": "hard",
+  "graders": [
+    "security"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S09-C01",
+      "kind": "adversarial",
+      "inject": "INJ-070",
+      "input_path": "evaluation/public_fixtures/PUB-11.json",
+      "expect": "purpose_limitation_enforced",
+      "reviewer_role": "DPO",
+      "focus": "privacy / purpose"
+    },
+    {
+      "case_id": "S09-C02",
+      "kind": "adversarial",
+      "inject": "INJ-067",
+      "input_path": "evaluation/public_fixtures/PUB-09.json",
+      "expect": "deny_by_default",
+      "reviewer_role": "CISO",
+      "focus": "cross-border / stale authz"
+    }
+  ]
+}

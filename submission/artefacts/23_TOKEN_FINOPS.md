@@ -46,7 +46,7 @@ Baselines token/cost reality from challenge data, shows why denial-of-wallet and
 | Item / question | Evidence-based response | Decision / owner | Acceptance evidence |
 |---|---|---|---|
 | Hard cap | `MAX_TOKENS_PER_REQUEST = 50000` denies SEC-2-scale loops (E-2305). | Capstone team | `security_gates.py` |
-| Gap | No cumulative monthly token budget enforcer in code yet (PUB-14). | Capstone team | Gap R-2301 |
+| Gap | No cumulative monthly token budget / cost-per-task calculator yet (PUB-14 deep path). Suite S11 + `latency_cost_grader` enforce per-request budgets in the TEVV harness. | Capstone team | Gap R-2301; `submission/evaluation/datasets/S11_latency_token_cost_dow.json` |
 
 ## 4. Caching and avoided inference
 

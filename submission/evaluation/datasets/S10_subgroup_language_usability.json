@@ -1,0 +1,33 @@
+{
+  "suite_id": "S10",
+  "name": "subgroup_language_usability",
+  "filename": "S10_subgroup_language_usability.json",
+  "package_suite": 10,
+  "title": "Subgroup, language, usability and accessibility",
+  "version": "1.0",
+  "gate": "subgroup",
+  "graders": [
+    "subgroup"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S10-C01",
+      "kind": "subgroup",
+      "inject": "INJ-072",
+      "input_path": "submission/evaluation/datasets/subgroup_analysis.json",
+      "expect": "low_fidelity_routes_to_human",
+      "reviewer_role": "Safety Physician",
+      "focus": "ar/hi abstention policy"
+    },
+    {
+      "case_id": "S10-C02",
+      "kind": "edge",
+      "inject": "INJ-073",
+      "input_path": "evaluation/public_fixtures/PUB-06.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "language usability"
+    }
+  ]
+}

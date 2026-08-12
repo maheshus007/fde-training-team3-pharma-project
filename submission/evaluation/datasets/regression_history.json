@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "description": "Append-only evaluate history; fail blocks release.",
+  "entries": [
+    {
+      "timestamp": "2026-08-12T06:44:03Z",
+      "counts": {
+        "total": 67,
+        "pass": 63,
+        "fail": 0,
+        "not_implemented": 4
+      },
+      "hard_gate_blocked": false,
+      "implementation_version": "submission-evaluation/1.0",
+      "evidence_path": "submission/evidence/evaluation_results.json",
+      "policy": "RELEASE_GATE_POLICY.md"
+    },
+    {
+      "timestamp": "2026-08-12T06:51:34Z",
+      "counts": {
+        "total": 67,
+        "pass": 63,
+        "fail": 0,
+        "not_implemented": 4
+      },
+      "hard_gate_blocked": false,
+      "implementation_version": "submission-evaluation/1.0",
+      "evidence_path": "submission/evidence/evaluation_results.json",
+      "policy": "RELEASE_GATE_POLICY.md"
+    }
+  ]
+}

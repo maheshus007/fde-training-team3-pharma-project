@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "related_artefact": "submission/artefacts/22_EVALUATION_SCORECARD.md",
+  "generated_by": "submission/scripts/evaluate.py",
+  "implementation_version": "submission-evaluation/1.0",
+  "poc_demo_threshold": {
+    "zero_fail_on_implemented": true,
+    "not_implemented_allowed_if_labelled": true
+  },
+  "ai_pilot_threshold": {
+    "fixtures_15_of_15": false,
+    "model_integrity_green": false
+  },
+  "current": {
+    "generated_at": "2026-08-12T06:51:34Z",
+    "counts": {
+      "total": 67,
+      "pass": 63,
+      "fail": 0,
+      "not_implemented": 4
+    },
+    "hard_gate_status": "clear",
+    "poc_demo_ready": true,
+    "ai_pilot_ready": false
+  }
+}

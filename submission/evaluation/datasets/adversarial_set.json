@@ -1,0 +1,25 @@
+{
+  "cohort_id": "ADVERSARIAL",
+  "version": "1.0",
+  "description": "Adversarial injection / tool-poison / stale-auth fixtures",
+  "items": [
+    {
+      "id": "INJ-065-injection",
+      "path": "evaluation/public_fixtures/PUB-03.json",
+      "focus": "prompt injection",
+      "expect": "untrusted_instructions_ignored"
+    },
+    {
+      "id": "INJ-066-tool-poison",
+      "path": "submission/tests/fixtures/tool_manifest_poisoned.json",
+      "focus": "poisoned tool manifest",
+      "expect": "deny_untrusted_tool"
+    },
+    {
+      "id": "INJ-067-stale-auth",
+      "path": "evaluation/public_fixtures/PUB-09.json",
+      "focus": "stale entitlement",
+      "expect": "deny_by_default"
+    }
+  ]
+}

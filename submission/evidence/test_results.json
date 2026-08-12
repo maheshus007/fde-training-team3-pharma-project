@@ -1,13 +1,32 @@
 {
-  "suite": "submission/tests",
-  "runner": "python -m unittest discover -s submission/tests -v",
-  "passed": 35,
+  "suite": "submission/tests + evaluation graders",
+  "runner": "python submission/scripts/test.py",
+  "generated_at": "2026-08-12T06:51:35Z",
+  "runtime_mode": "ai_disabled_deterministic",
+  "tests_run": 46,
+  "passed": 46,
   "failed": 0,
   "status": "OK",
-  "phase4_focus": [
-    "test_prohibited_actions.py",
-    "test_authorization_freshness.py",
-    "test_tool_trust.py"
+  "results": [
+    {
+      "suite": "submission/tests + submission.evaluation.graders",
+      "test_id": "ALL",
+      "requirement_ids": [
+        "RUB-13",
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-12T06:51:35Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests;submission/evaluation/graders/test_graders.py",
+      "tests_run": 46
+    }
   ],
-  "notes": "Includes Phase 3 workflow contract tests plus Phase 4 policy_guard hard gates."
+  "evidence_path": "submission/evidence/test_results.json"
 }

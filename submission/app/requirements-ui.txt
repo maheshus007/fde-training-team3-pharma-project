@@ -1,0 +1,21 @@
+# Optional UI — not required for assessed stdlib mode (setup/run/test/evaluate).
+# taipy-gui 4.0.2 declares pandas<=2.2.2, which has no Python 3.14 wheel.
+# Install with:
+#   python -m pip install --no-deps taipy-gui==4.0.2
+#   python -m pip install -r requirements-ui.txt
+taipy-common==4.0.2
+flask>=3.1.0,<3.2
+flask-cors>=5.0.0,<5.1
+flask-socketio>=5.6.1
+gevent
+gevent-websocket<=0.10.1
+gitignore-parser
+kthread
+markdown
+python-dotenv
+pytz
+simple-websocket
+tzlocal
+watchdog
+charset-normalizer
+pandas

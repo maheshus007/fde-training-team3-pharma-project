@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap");
+
+:root {
+  --ink: #12251f;
+  --muted: #4a635b;
+  --line: #c9d7d0;
+  --paper: rgba(255, 255, 255, 0.86);
+  --accent: #0d6e5c;
+  --accent-deep: #084f42;
+  --warn: #9a6b12;
+  --danger: #9b3a3a;
+  --ok: #1f6b45;
+  --glow: rgba(13, 110, 92, 0.12);
+  --radius: 14px;
+  --shadow: 0 18px 40px rgba(18, 37, 31, 0.08);
+  --font-display: "Syne", Georgia, serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+}
+
+html,
+body,
+.taipy-root,
+[class*="MuiCssBaseline"] {
+  background:
+    radial-gradient(900px 420px at 8% -8%, #d7ebe3 0%, transparent 55%),
+    radial-gradient(700px 380px at 92% 0%, #dce8f2 0%, transparent 50%),
+    linear-gradient(165deg, #eef4f1 0%, #e4ece8 48%, #edf1ef 100%) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bar-sweep {
+  from { transform: scaleX(0.2); opacity: 0.4; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+h1, h2, h3, h4,
+.taipy-text h1,
+.taipy-text h2,
+.taipy-text h3 {
+  font-family: var(--font-display) !important;
+  color: var(--ink) !important;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 4vw, 3.1rem) !important;
+  font-weight: 800 !important;
+  margin: 0.2rem 0 0.35rem !important;
+  animation: rise-in 0.55s ease both;
+}
+
+h2 {
+  font-size: 1.35rem !important;
+  margin-top: 1.4rem !important;
+}
+
+h3 {
+  font-size: 1.05rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em !important;
+  color: var(--muted) !important;
+}
+
+p, label, span, li, .MuiTypography-root, .taipy-text {
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+}
+
+.brand-mark {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.6rem;
+  animation: rise-in 0.4s ease both;
+}
+
+.lede {
+  max-width: 46rem;
+  color: var(--muted) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.55;
+  animation: rise-in 0.6s ease 0.05s both;
+}
+
+.notice {
+  background: linear-gradient(90deg, rgba(13, 110, 92, 0.12), rgba(13, 110, 92, 0.04));
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0.9rem 1.1rem;
+  margin: 0.85rem 0 1.4rem;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow);
+  animation: rise-in 0.55s ease 0.1s both;
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem 1.25rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  animation: rise-in 0.5s ease both;
+}
+
+.panel::before {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin: -0.2rem 0 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #6aa89a 55%, transparent);
+  transform-origin: left;
+  animation: bar-sweep 0.7s ease both;
+}
+
+.metric-value {
+  font-family: var(--font-display) !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-deep) !important;
+  line-height: 1.2;
+}
+
+.metric-label {
+  color: var(--muted) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-ok { color: var(--ok) !important; }
+.status-warn { color: var(--warn) !important; }
+.status-bad { color: var(--danger) !important; }
+
+.detail-box {
+  background: #f7fbf9;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  min-height: 8rem;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: var(--ink) !important;
+  font-size: 0.95rem;
+}
+
+.taipy-navbar {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line) !important;
+}
+
+.taipy-navbar .MuiTab-root {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  color: var(--muted) !important;
+}
+
+.taipy-navbar .Mui-selected {
+  color: var(--accent-deep) !important;
+}
+
+.taipy-button,
+button.MuiButton-root {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 22px var(--glow) !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.taipy-button:hover,
+button.MuiButton-root:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(13, 110, 92, 0.22) !important;
+}
+
+.MuiOutlinedInput-root,
+.taipy-input .MuiOutlinedInput-root {
+  background: #fff !important;
+  border-radius: 10px !important;
+}
+
+.MuiOutlinedInput-input,
+.MuiInputBase-input {
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+}
+
+.MuiFormLabel-root,
+label {
+  color: var(--muted) !important;
+}
+
+.taipy-tree,
+.MuiTreeView-root,
+[class*="TreeView"] {
+  background: #fbfdfc !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 0.55rem 0.35rem !important;
+  min-height: 360px;
+}
+
+.MuiTreeItem-content,
+.MuiTreeItem-label {
+  font-family: var(--font-body) !important;
+  color: var(--ink) !important;
+  border-radius: 8px !important;
+}
+
+.MuiTreeItem-content:hover {
+  background: rgba(13, 110, 92, 0.08) !important;
+}
+
+.Mui-selected.MuiTreeItem-content,
+.MuiTreeItem-content.Mui-selected {
+  background: rgba(13, 110, 92, 0.14) !important;
+}
+
+.MuiTreeItem-iconContainer svg {
+  color: var(--accent) !important;
+}
+
+.fullwidth {
+  width: 100% !important;
+}
+
+.layout-gap > * {
+  margin-bottom: 0.75rem;
+}

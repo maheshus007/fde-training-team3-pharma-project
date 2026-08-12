@@ -474,15 +474,15 @@ Batch ID
 ### Status
 <|{batch_summary}|text|class_name=metric-value|>
 
-<|layout|columns=1 1|gap=18px|
-<|
+<|layout|columns=1 1|gap=18px|class_name=results-grid|
+<|part|class_name=tree-pane|
 #### Result tree
 Click any node to inspect details.
 <|{batch_sel}|tree|lov={batch_tree}|expanded={batch_expanded}|value_by_id|filter|height=420px|width=100%|class_name=fullwidth|on_change=on_batch_select|>
 |>
-<|
+<|part|class_name=detail-pane|
 #### Selected node
-<|{batch_detail}|text|class_name=detail-box|>
+<|{batch_detail}|input|multiline|active=False|height=420px|class_name=detail-box|>
 |>
 |>
 |>
@@ -503,14 +503,15 @@ Case IDs (comma-separated)
 ### Status
 <|{pv_summary}|text|class_name=metric-value|>
 
-<|layout|columns=1 1|gap=18px|
-<|
+<|layout|columns=1 1|gap=18px|class_name=results-grid|
+<|part|class_name=tree-pane|
 #### Result tree
+Click any node to inspect details.
 <|{pv_sel}|tree|lov={pv_tree}|expanded={pv_expanded}|value_by_id|filter|height=420px|width=100%|class_name=fullwidth|on_change=on_pv_select|>
 |>
-<|
+<|part|class_name=detail-pane|
 #### Selected node
-<|{pv_detail}|text|class_name=detail-box|>
+<|{pv_detail}|input|multiline|active=False|height=420px|class_name=detail-box|>
 |>
 |>
 |>
@@ -531,14 +532,15 @@ Root lot
 ### Status
 <|{supply_summary}|text|class_name=metric-value|>
 
-<|layout|columns=1 1|gap=18px|
-<|
+<|layout|columns=1 1|gap=18px|class_name=results-grid|
+<|part|class_name=tree-pane|
 #### Result tree
+Click any node to inspect details.
 <|{supply_sel}|tree|lov={supply_tree}|expanded={supply_expanded}|value_by_id|filter|height=420px|width=100%|class_name=fullwidth|on_change=on_supply_select|>
 |>
-<|
+<|part|class_name=detail-pane|
 #### Selected node
-<|{supply_detail}|text|class_name=detail-box|>
+<|{supply_detail}|input|multiline|active=False|height=420px|class_name=detail-box|>
 |>
 |>
 |>
@@ -554,21 +556,21 @@ Fail-closed checks against challenge evidence. No side effects.
 |>
 
 <|part|class_name=panel|
-<|layout|columns=1 1|gap=18px|
-<|
+<|layout|columns=1 1|gap=18px|class_name=results-grid|
+<|part|class_name=tree-pane|
 #### Gate tree
-<|{gates_sel}|tree|lov={gates_tree}|expanded={gates_expanded}|value_by_id|filter|height=460px|width=100%|class_name=fullwidth|on_change=on_gates_select|>
+<|{gates_sel}|tree|lov={gates_tree}|expanded={gates_expanded}|value_by_id|filter|height=420px|width=100%|class_name=fullwidth|on_change=on_gates_select|>
 |>
-<|
+<|part|class_name=detail-pane|
 #### Selected gate
-<|{gates_detail}|text|class_name=detail-box|>
+<|{gates_detail}|input|multiline|active=False|height=420px|class_name=detail-box|>
 |>
 |>
 |>
 """
 
 pages = {
-    "/": "<|navbar|>",
+    "/": "<|navbar|>\n" + page_overview,
     "overview": page_overview,
     "batch": page_batch,
     "pv": page_pv,

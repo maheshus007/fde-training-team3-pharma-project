@@ -1,0 +1,42 @@
+{
+  "suite_id": "S01",
+  "name": "business_baseline",
+  "filename": "S01_business_baseline.json",
+  "package_suite": 1,
+  "title": "Business outcome and process-baseline",
+  "version": "1.0",
+  "gate": "soft",
+  "graders": [
+    "latency_cost"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S01-C01",
+      "kind": "golden",
+      "inject": "INJ-021",
+      "input_path": "evaluation/public_fixtures/PUB-01.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "EU QP",
+      "focus": "batch process baseline"
+    },
+    {
+      "case_id": "S01-C02",
+      "kind": "golden",
+      "inject": "INJ-037",
+      "input_path": "evaluation/public_fixtures/PUB-04.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "PV process baseline"
+    },
+    {
+      "case_id": "S01-C03",
+      "kind": "golden",
+      "inject": "INJ-051",
+      "input_path": "evaluation/public_fixtures/PUB-07.json",
+      "expect": "indexed_or_pass",
+      "reviewer_role": "Supply Governance Board",
+      "focus": "supply process baseline"
+    }
+  ]
+}

@@ -5,9 +5,9 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — AEGIS-PHARMA capstone (individual names/roles pending; see A-001 in `01_BUSINESS_CASE.md`) |
-| Version / date | v0.1 draft — 2026-08-07 |
+| Version / date | v1.1 — 2026-08-12 |
 | Reviewers | Pending team review |
-| Status | Draft |
+| Status | Current |
 | Related requirements / ADRs | Artefact 28 NO-GO conditions; open R-IDs across 16–28 |
 
 ## Purpose
@@ -19,9 +19,10 @@ Prioritises the path from “deterministic fail-closed POC” to a state where a
 | Evidence ID | Source path / record | Authority and effective time | Fact used | Integrity / limitation |
 |---|---|---|---|---|
 | E-2901 | `28_PRODUCTION_READINESS.md` §7 | Prior | Pilot GO conditions | Blocking list |
-| E-2902 | `submission/evidence/evaluation_results.json` | Run | 4 fixtures not_implemented | Code backlog seed |
-| E-2903 | Open gaps R-1604, R-1702, R-1801, R-2301, R-2402, R-2501, R-2701, R-2802 | Prior artefacts | Cross-cutting debt | — |
+| E-2902 | `submission/evidence/evaluation_results.json` | Run | 4 fixtures not_implemented (PUB-10/12/14/15) | Code backlog seed |
+| E-2903 | Open gaps R-1702, R-1801, R-2201, R-2301, R-2402, R-2501, R-2701, R-2801 | Prior artefacts | Cross-cutting debt | Runbook file gap closed; drill open |
 | E-2904 | `data/vendor_contracts.csv` | Contracts | 120-day AI vendor exit | Time box for portability |
+| E-2905 | `submission/runbooks/`, `submission/evaluation/`, evidence hashes/manifest | Participant package | Filed ops + TEVV + packaging | — |
 
 ## 1. Prioritized backlog
 
@@ -29,29 +30,29 @@ Prioritises the path from “deterministic fail-closed POC” to a state where a
 |---|---|---|
 | P0 | Repair model artifact integrity + re-validate AI-EVIDENCE (VT) | E-2901 #1–2 |
 | P0 | Live consent check + residency remediation plan execution | Privacy blockers |
-| P0 | File runbooks (setup/ops/incident/AI-disabled) under `submission/runbooks/` | R-2501/R-2802 |
-| P1 | Tool allow-list module; endpoint failover with integrity (PUB-10); LIMS adapter (PUB-12) | E-2902 |
+| P0 | Record timed AI-disabled / incident drill against filed runbooks | R-2501 / R-2802 |
+| P1 | Deep paths: endpoint failover integrity (PUB-10); LIMS adapter (PUB-12) | E-2902 |
 | P1 | FinOps cost/task calculator (PUB-14); clinical protocol abstention (PUB-15) | E-2902 |
-| P1 | UI with a11y + forced evidence acknowledgment | R-1801 |
-| P2 | Exit rehearsal within 120 days; adversarial eval set; competency programme | E-2904; R-2701 |
+| P1 | UI a11y + forced evidence acknowledgment (app scaffold exists) | R-1801 |
+| P2 | Exit rehearsal within 120 days; expanded adversarial hold-out; competency programme | E-2904; R-2201; R-2701 |
 
 ## 2. 0–30 day actions
 
 | Action | Owner | Acceptance |
 |---|---|---|
 | Freeze inference; operate deterministic mode only | Platform / CQO | Matches current code |
-| Write four runbooks + drill AI-disabled path once | Capstone / Ops | Files in submission/runbooks |
+| Drill AI-disabled path once using filed runbooks; file drill note | Capstone / Ops | Evidence under submission/evidence or runbooks |
 | Integrity incident on GXP-SUM-1 with vendor | Platform | Hash/signature plan |
 | Confirm DSR-17 ↔ LH-44 identity join | DPO | Close R-1702 / R-501 |
-| Generate submission_manifest.csv + file_hashes.csv | Capstone | Defence packaging |
-| Implement tool allow-list OR formally disable all tool-calling | CISO / Capstone | R-1604 |
+| Keep submission_manifest.csv + file_hashes.csv fresh before defence | Capstone | `hash_and_manifest.py` |
+| Keep tool allow-list / poison deny enforced (already coded) | CISO / Capstone | `test_tool_trust.py` green |
 
 ## 3. 31–60 day actions
 
 | Action | Owner | Acceptance |
 |---|---|---|
 | Re-run VT; close or risk-accept AF items | Validation | VT green or CQO acceptance doc |
-| Implement PUB-10/12/14/15 or waive with CQO signature | Capstone | evaluate.py summary improves |
+| Implement PUB-10/12/14/15 or waive with CQO signature | Capstone | evaluate.py NI → 0 or waived |
 | Residency remediation for ClinicalLake SG replica | DPO / Infra | data_residency re-check |
 | Automation-bias UI MVP + keyboard/a11y pass | Product | Usability findings flipped |
 | Dual-export eval/observability off AIVENDOR-X | Platform | Exit asset gaps shrink |
@@ -80,12 +81,13 @@ Prioritises the path from “deterministic fail-closed POC” to a state where a
 | Asset | Location |
 |---|---|
 | 30 artefacts | `submission/artefacts/` |
+| TEVV harness | `submission/evaluation/` (S01–S12, graders, rubrics) |
 | Source + tests + scripts | `submission/src|tests|scripts/` |
-| Machine evidence | `submission/evidence/*.json` |
+| App (advisory UI) | `submission/app/` |
+| Runbooks | `submission/runbooks/` |
+| Machine evidence | `submission/evidence/*` |
 | Challenge evidence (read-only) | `data/`, `knowledge/`, `evaluation/` |
-| ADRs / contracts / C4 | artefacts 10–12 |
-| Open risk register | R-IDs across artefacts |
-| How to run | `submission/README.md` |
+| How to run | `submission/README.md`; runbooks/SETUP.md |
 
 ## 7. Success and stop criteria
 
@@ -106,7 +108,7 @@ Prioritises the path from “deterministic fail-closed POC” to a state where a
 | Claim / requirement | Architecture or control | Test / evaluation | Evidence path | Result |
 |---|---|---|---|---|
 | Roadmap tied to NO-GO conditions | §1–4 ↔ artefact 28 §7 | Review | E-2901 | PASS (doc) |
-| Clean-room handover executable | README + scripts | Recipient trial | E-2904 inventory | Pending |
+| Clean-room handover executable | README + scripts + runbooks | Recipient trial | E-2905 | Pending drill |
 
 ## Review record
 

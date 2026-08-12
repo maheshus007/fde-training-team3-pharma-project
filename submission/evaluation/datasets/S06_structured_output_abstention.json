@@ -1,0 +1,42 @@
+{
+  "suite_id": "S06",
+  "name": "structured_output_abstention",
+  "filename": "S06_structured_output_abstention.json",
+  "package_suite": 6,
+  "title": "Structured-output, abstention, uncertainty and human-review",
+  "version": "1.0",
+  "gate": "hard",
+  "graders": [
+    "schema"
+  ],
+  "source": "evaluation/EVALUATION_PLAN.md required suites",
+  "cases": [
+    {
+      "case_id": "S06-C01",
+      "kind": "golden",
+      "inject": "INJ-026",
+      "input_path": "evaluation/contract_samples/positive_batch.json",
+      "expect": "pass",
+      "reviewer_role": "EU QP",
+      "focus": "additionalProperties denied; human_review required"
+    },
+    {
+      "case_id": "S06-C02",
+      "kind": "golden",
+      "inject": "INJ-040",
+      "input_path": "evaluation/contract_samples/positive_pv.json",
+      "expect": "pass",
+      "reviewer_role": "Safety Physician",
+      "focus": "abstention / uncertainty fields"
+    },
+    {
+      "case_id": "S06-C03",
+      "kind": "golden",
+      "inject": "INJ-054",
+      "input_path": "evaluation/contract_samples/positive_supply.json",
+      "expect": "pass",
+      "reviewer_role": "Supply Governance Board",
+      "focus": "structured advisory envelope"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "cohort_id": "GOLDEN-CONTRACT",
+  "version": "1.0",
+  "description": "Contract samples that must validate (positive) or fail closed (negative)",
+  "positive": [
+    {"sample": "positive_batch.json", "schema": "batch_response.schema.json", "workflow": "batch_evidence"},
+    {"sample": "positive_pv.json", "schema": "pv_response.schema.json", "workflow": "pv_intake"},
+    {"sample": "positive_supply.json", "schema": "supply_response.schema.json", "workflow": "supply_options"}
+  ],
+  "negative": [
+    {"sample": "negative_batch_prohibited.json", "schema": "batch_response.schema.json", "workflow": "batch_evidence", "expect": "fail"},
+    {"sample": "negative_pv_prohibited.json", "schema": "pv_response.schema.json", "workflow": "pv_intake", "expect": "fail"},
+    {"sample": "negative_supply_side_effect.json", "schema": "supply_response.schema.json", "workflow": "supply_options", "expect": "fail"}
+  ]
+}

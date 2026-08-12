@@ -1,0 +1,24 @@
+cohort_id,kind,source,description
+S01,suite,S01_business_baseline.json,Suite 1 business baseline
+S02,suite,S02_evidence_fidelity_provenance.json,Suite 2 evidence fidelity
+S03,suite,S03_gxp_and_safety_boundaries.json,Suite 3 GxP safety boundaries
+S04,suite,S04_data_integrity_audit_trail.json,Suite 4 data integrity audit
+S05,suite,S05_retrieval_authority_supersession.json,Suite 5 retrieval authority
+S06,suite,S06_structured_output_abstention.json,Suite 6 structured output abstention
+S07,suite,S07_pv_duplicate_clock_terminology.json,Suite 7 PV duplicate clock terminology
+S08,suite,S08_agent_path_tool_authorization.json,Suite 8 agent path tool authz
+S09,suite,S09_privacy_leakage_cross_border.json,Suite 9 privacy cross-border
+S10,suite,S10_subgroup_language_usability.json,Suite 10 subgroup language usability
+S11,suite,S11_latency_token_cost_dow.json,Suite 11 latency token cost DoW
+S12,suite,S12_model_substitution_outage_rollback.json,Suite 12 model substitution outage
+GOLDEN-CONTRACT,golden,golden_set.json,Positive/negative contract samples
+GOLDEN-PUB,golden,evaluation/public_fixtures,PUB-01..15 inputs not answer keys
+EDGE-CASE,edge,edge_case_set.json,Edge cases
+ADVERSARIAL,adversarial,adversarial_set.json,Adversarial cases
+FAILURE,failure,failure_recovery_set.json#failure,Failure cases
+OUTAGE,outage,failure_recovery_set.json#outage,Outage cases
+RECOVERY,recovery,failure_recovery_set.json#recovery,Recovery cases
+SUBGROUP,subgroup,subgroup_analysis.json,Language subgroup controls
+THRESHOLDS,meta,thresholds.json,Release thresholds
+REGRESSION,meta,regression_history.json,Regression history
+SCORECARD,meta,scorecard.json,Machine scorecard snapshot

@@ -3,9 +3,9 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — Domain / evidence lead |
-| Version / date | 1.0 / 2026-08-10 |
-| Status | Reviewed |
-| Related | `data/inject_evidence_map.csv`; `data/injects.json`; `case/INTEGRATED_CASE.md` §7; artefacts 05–09 |
+| Version / date | 1.1 / 2026-08-12 |
+| Status | Reviewed — validated vs package catalogues |
+| Related | `data/inject_evidence_map.csv`; `data/injects.json`; `case/INTEGRATED_CASE.md` §7; artefacts 05–09; `submission/scripts/validate_evidence_map.py` |
 
 ## Purpose
 
@@ -32,7 +32,7 @@ Primary indexes already shipped by the package: `data/inject_evidence_map.csv`, 
 
 ## 2. Complete inject register (INJ-001..084)
 
-Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `source_documents/` or `case/`.
+Paths: files live under `data/` unless prefixed `knowledge/`, `source_documents/`, or `case/`. Register **titles** match `data/inject_evidence_map.csv` / `data/injects.json`. Map may add knowledge/source/case enrichments beyond the CSV token list.
 
 | Inject | Dim | Title | Evidence paths | Authority / time notes | Conflicts / gaps | Team 3 assessment |
 |---|---|---|---|---|---|---|
@@ -45,25 +45,25 @@ Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `sou
 | INJ-007 | D02 | Assay drift | `assay_results.csv`; `instruments.csv`; `reagent_lots.csv` | QC / research assays | Comparability disputed | Deferred |
 | INJ-008 | D02 | Compound genealogy collision | `compounds.csv`; `substance_master.csv` | Research registry | Shared local code, different structure | Supporting (identity) |
 | INJ-009 | D02 | Omics cohort bias | `omics_cohorts.csv`; `model_performance.csv` | Translational models | Ancestry performance gap | Deferred |
-| INJ-010 | D02 | Preclinical image manipulation | `preclinical_studies.csv`; `image_forensics.csv` | CRO report metadata | Duplication concern | Deferred |
+| INJ-010 | D02 | Preclinical image manipulation concern | `preclinical_studies.csv`; `image_forensics.csv` | CRO report metadata | Duplication concern | Deferred |
 | INJ-011 | D02 | Unqualified research model | `model_registry.csv` | Model governance | No intended use / locked set | Supporting (model trust) |
 | INJ-012 | D02 | Target-evidence conflict | `target_evidence.csv`; `data_licenses.csv` | Internal vs licensed | Disagreement + licence limits | Deferred |
-| INJ-013 | D03 | Protocol-version divergence | `clinical_trials.csv`; `protocol_versions.csv`; `site_approvals.csv`; `source_documents/Protocol_NCB204_301_v4_1.md`; `v5_0.md` | Clinical / country approval | Sites on mixed versions | Supporting (temporal) |
+| INJ-013 | D03 | Protocol-version divergence | `clinical_trials.csv`; `protocol_versions.csv`; `site_approvals.csv`; `source_documents/Protocol_NCB204_301_v4_1.md`; `source_documents/Protocol_NCB204_301_v5_0.md` | Clinical / country approval | Sites on mixed versions | Supporting (temporal) |
 | INJ-014 | D03 | Eligibility ambiguity | `subjects.csv`; `eligibility_evidence.csv` | Central vs local lab | AI must not determine eligibility | Hard-gate control |
-| INJ-015 | D03 | Randomization outage | `randomization_events.csv`; `downtime_events.csv` | IRT / manual log | Emergency assignment | Deferred |
+| INJ-015 | D03 | Randomization service outage | `randomization_events.csv`; `downtime_events.csv` | IRT / manual log | Emergency assignment | Deferred |
 | INJ-016 | D03 | Potential unblinding | `support_tickets.csv`; `access_logs.csv` | Site support | Treatment-arm hints | Deferred |
 | INJ-017 | D03 | eConsent withdrawal mismatch | `consents.csv`; `specimens.csv`; `processing_events.csv` | eConsent vs lab | Processing after withdrawal | Supporting (privacy) |
-| INJ-018 | D03 | Device clock skew | `wearable_readings.csv`; `timezone_rules.csv` | Device / site TZ; DST 2026-03-29 | local_unknown vs UTC | In-scope POC (time) |
+| INJ-018 | D03 | Decentralized-device clock skew | `wearable_readings.csv`; `timezone_rules.csv` | Device / site TZ; DST 2026-03-29 | local_unknown vs UTC | In-scope POC (time) |
 | INJ-019 | D03 | Endpoint adjudication backlog | `endpoint_packets.csv`; `imaging_reviews.csv` | Imaging core | Missing docs; conflicting reviews | Deferred |
 | INJ-020 | D03 | Site inspection risk | `site_metrics.csv`; `access_logs.csv` | Clinical quality | Credential sharing pattern | Deferred |
-| INJ-021 | D04 | Biologics genealogy break | `batches.csv`; `material_genealogy.csv`; `warehouse_movements.csv` | MES vs warehouse; batch 2026-07-10 | SUA-88 missing_branch vs issued | In-scope POC (A) |
+| INJ-021 | D04 | Biologics batch genealogy break | `batches.csv`; `material_genealogy.csv`; `warehouse_movements.csv` | MES vs warehouse; batch 2026-07-10 | SUA-88 missing_branch vs issued | In-scope POC (A) |
 | INJ-022 | D04 | Sterility excursion | `environmental_monitoring.csv`; `microbiology_results.csv`; `knowledge/STERILE_MANUFACTURING_ESCALATION.md` | EM / micro | Organism id corrected later | In-scope POC (A) |
 | INJ-023 | D04 | OOS/OOT disagreement | `lab_results.csv`; `oos_investigations.csv`; `knowledge/OOS_OOT_INVESTIGATION.md` | LIMS vs stats vs notebook | Triple status conflict | In-scope POC (A) |
-| INJ-024 | D04 | Unit conversion defect | `lab_results.csv`; `interface_mappings.csv`; `source_documents/LIMS_result_contract_v1.md`; `v2.md` | CRO→LIMS interface; approved=no | mg/L vs µg/mL | In-scope POC (unit) |
-| INJ-025 | D04 | eBR exception | `ebr_steps.csv`; `downtime_events.csv` | eBR | Back-entry after degradation | In-scope POC (A) |
+| INJ-024 | D04 | Unit conversion defect | `lab_results.csv`; `interface_mappings.csv`; `source_documents/LIMS_result_contract_v1.md`; `source_documents/LIMS_result_contract_v2.md` | CRO→LIMS interface; approved=no | mg/L vs µg/mL | In-scope POC (unit) |
+| INJ-025 | D04 | Electronic batch record exception | `ebr_steps.csv`; `downtime_events.csv` | eBR | Back-entry after degradation | In-scope POC (A) |
 | INJ-026 | D04 | Cleaning validation boundary | `cleaning_validation.csv`; `production_schedule.csv` | Validation / scheduling | Campaign sequence change | Supporting (A) |
-| INJ-027 | D04 | PAT drift | `pat_models.csv`; `recipes.csv` | PAT vs recipe | Version desync | Supporting (A) |
-| INJ-028 | D04 | QP evidence gap | `release_packets.csv`; `supplier_audits.csv`; `source_documents/CMO_audit_commitment_2025_14.md` | QP / supplier quality | Missing commitment confirmation | In-scope POC (A) |
+| INJ-027 | D04 | Process analytical technology drift | `pat_models.csv`; `recipes.csv` | PAT vs recipe | Version desync | Supporting (A) |
+| INJ-028 | D04 | Qualified Person evidence gap | `release_packets.csv`; `supplier_audits.csv`; `source_documents/CMO_audit_commitment_2025_14.md` | QP / supplier quality | Missing commitment confirmation | In-scope POC (A) |
 | INJ-029 | D05 | Audit-trail disabled | `audit_trails.csv`; `privileged_sessions.csv` | System audit | 47-minute gap | In-scope POC (integrity) |
 | INJ-030 | D05 | Shared laboratory account | `access_logs.csv`; `staff_rosters.csv` | Lab access | Attributability break | In-scope POC (integrity) |
 | INJ-031 | D05 | Validation-state ambiguity | `system_inventory.csv`; `validation_inventory.csv` | CSV inventories | Triple label conflict | In-scope POC (authority) |
@@ -76,7 +76,7 @@ Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `sou
 | INJ-038 | D06 | Reporting-clock conflict | `icsr_cases.csv`; `safety_receipts.csv`; `knowledge/PV_REPORTING_CLOCKS.md` | Multi-channel receipt | Awareness dates disagree | In-scope POC (B) |
 | INJ-039 | D06 | MedDRA version mismatch | `adverse_events.csv`; `terminology_versions.csv` | MedDRA 27.1 vs 28.0 | PT/signal grouping shift | In-scope POC (B) |
 | INJ-040 | D06 | Expectedness source conflict | `listedness_sources.csv`; `product_labels.csv`; `source_documents/CCDS_NCB204_v4.md` (eff. 2026-03-18); `knowledge/PV_LISTEDNESS_AUTHORITY.md` | IB/CCDS/local label | IN label not listed | In-scope POC (B) |
-| INJ-041 | D06 | Pregnancy/paediatric sensitivity | `icsr_cases.csv`; `sensitive_segments.csv` | PV privacy | Elevated role required | In-scope POC (B/PRI) |
+| INJ-041 | D06 | Pregnancy and paediatric sensitivity | `icsr_cases.csv`; `sensitive_segments.csv` | PV privacy | Elevated role required | In-scope POC (B/PRI) |
 | INJ-042 | D06 | Social-media authenticity | `social_listening.csv` | Social listening | Unidentifiable reporter | In-scope POC (B) |
 | INJ-043 | D06 | Product-quality and safety link | `product_complaints.csv`; `icsr_cases.csv` | Complaint + PV | Lot linkage uncertain | Supporting (B) |
 | INJ-044 | D06 | Signal disproportionality instability | `signal_metrics.csv`; `exposure_estimates.csv` | Signal science | Duplicate/exposure sensitivity | Supporting (B advisory) |
@@ -94,24 +94,24 @@ Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `sou
 | INJ-056 | D08 | Allocation ethics | `demand_forecast.csv`; `inventory.csv`; `allocation_constraints.csv`; `knowledge/SUPPLY_ALLOCATION_ETHICS.md` | Supply ethics | Demand > stock; no AI allocate | In-scope POC (C) |
 | INJ-057 | D08 | Customs documentation mismatch | `shipments.csv`; `trade_documents.csv` | Trade | Description vs licence | Supporting (C) |
 | INJ-058 | D08 | Recall-scope uncertainty | `recall_candidates.csv`; `material_genealogy.csv` | Quality / supply | Incomplete genealogy links | Supporting (multi-hop revisit) |
-| INJ-059 | D09 | Genomic re-identification | `genomic_data.csv`; `privacy_risk.csv`; `knowledge/GENOMIC_DATA_STANDARD.md` | Privacy | High identifying combinations | Deferred |
+| INJ-059 | D09 | Genomic re-identification risk | `genomic_data.csv`; `privacy_risk.csv`; `knowledge/GENOMIC_DATA_STANDARD.md` | Privacy | High identifying combinations | Deferred |
 | INJ-060 | D09 | Cross-border secondary use | `consents.csv`; `data_exports.csv`; `knowledge/ECONSENT_AND_SECONDARY_USE.md` | Consent | Purpose not explicit | Supporting (PRI) |
-| INJ-061 | D09 | DSR versus GxP record | `deletion_requests.csv`; `retention_rules.csv` | Privacy + GxP | Linked to INJ-035 | In-scope POC (PRI) |
-| INJ-062 | D09 | Patient-support leakage | `patient_support_cases.csv` | Support programme | Excess free text | Deferred |
+| INJ-061 | D09 | Data-subject request versus GxP record | `deletion_requests.csv`; `retention_rules.csv` | Privacy + GxP | Linked to INJ-035 | In-scope POC (PRI) |
+| INJ-062 | D09 | Patient-support programme leakage | `patient_support_cases.csv` | Support programme | Excess free text | Deferred |
 | INJ-063 | D09 | Research-commercial boundary | `data_licenses.csv`; `commercial_use_requests.csv` | Licence | Commercial targeting risk | Supporting (PRI) |
 | INJ-064 | D09 | Regional residency failure | `data_residency.csv`; `backup_inventory.csv` | Residency policy | Unapproved backup region | Supporting (PRI) |
 | INJ-065 | D10 | Prompt injection in SOP | `knowledge_catalog.csv`; `knowledge/MALICIOUS_SUPPLIER_DEVIATION.md` | Untrusted supplier PDF | Hidden ignore-hold instructions | Hard-gate control |
 | INJ-066 | D10 | Tool-manifest poisoning | `tool_catalog.csv`; `tool_manifest_poisoned.json` | Tool registry | Silent disposition write request | Hard-gate control |
 | INJ-067 | D10 | Entitlement revocation lag | `users_entitlements.csv`; `access_cache.csv` | IAM vs gateway cache | Stale allow risk | Hard-gate control |
 | INJ-068 | D10 | Safety-data exfiltration | `security_events.csv` | Security monitoring | Crafted cross-affiliate pull | Hard-gate control |
-| INJ-069 | D10 | Ransomware / OT segmentation | `downtime_events.csv`; `network_zones.csv` | OT / IT | MES/QMS degraded | Supporting (continuity) |
+| INJ-069 | D10 | Ransomware and OT segmentation | `downtime_events.csv`; `network_zones.csv` | OT / IT | MES/QMS degraded | Supporting (continuity) |
 | INJ-070 | D10 | Model supply-chain compromise | `model_registry.csv`; `model_artifacts.csv` | Model governance | Hash mismatch | Hard-gate control |
-| INJ-071 | D11 | Automation bias | `candidate_outputs.csv`; `reviewer_feedback.csv` | Human factors | Omitted critical deviation | In-scope POC (A UX) |
+| INJ-071 | D11 | Automation bias in batch review | `candidate_outputs.csv`; `reviewer_feedback.csv` | Human factors | Omitted critical deviation | In-scope POC (A UX) |
 | INJ-072 | D11 | Language inequity | `model_performance.csv`; `icsr_cases.csv`; `knowledge/PV_MULTILINGUAL_REVIEW.md` | PV / models | AR/HI quality gap | In-scope POC (B) |
 | INJ-073 | D11 | Accessibility failure | `usability_findings.csv` | UX | Keyboard / colour-only | In-scope POC (NFR) |
 | INJ-074 | D11 | Role conflict | `stakeholders.csv`; `decision_rights.csv`; `case/STAKEHOLDER_PACK.md` | RAPID | Global vs local accountability | Supporting (gov) |
 | INJ-075 | D12 | Model price shock | `model_costs.csv`; `vendor_contracts.csv` | FinOps | +70% token price | Supporting |
-| INJ-076 | D12 | Denial-of-wallet | `model_usage.csv`; `security_events.csv` | FinOps / security | Oversized submissions | Supporting |
+| INJ-076 | D12 | Denial-of-wallet pattern | `model_usage.csv`; `security_events.csv` | FinOps / security | Oversized submissions | Supporting |
 | INJ-077 | D12 | Hidden human-review cost | `cost_model.csv`; `staff_rates.csv` | Business case | Review minutes omitted | Supporting |
 | INJ-078 | D12 | Vendor concentration | `vendor_dependencies.csv` | Vendor mgmt | Single provider stack | Supporting (KG avoid) |
 | INJ-079 | D13 | Regional platform outage | `downtime_events.csv`; `model_endpoints.csv` | Platform | Batch review + PV during outage | In-scope POC (continuity) |
@@ -119,7 +119,7 @@ Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `sou
 | INJ-081 | D13 | Model substitution regression | `model_performance.csv`; `model_endpoints.csv` | Model ops | Schema ok, fidelity loss | Supporting |
 | INJ-082 | D13 | AI-disabled continuity | `continuity_requirements.csv`; `knowledge/AI_DISABLED_CONTINUITY.md` | Continuity | 14-day / PV manual | In-scope POC |
 | INJ-083 | D13 | Vendor exit deadline | `vendor_contracts.csv`; `vendor_exit_assets.csv`; `knowledge/VENDOR_EXIT_AND_RETIREMENT.md` | Vendor | 120 days; incomplete export | Supporting |
-| INJ-084 | D13 | Retirement evidence preservation | `retention_rules.csv`; `retirement_assets.csv` | Retention / CSV | Inspectability after retire | Supporting |
+| INJ-084 | D13 | Retirement and evidence preservation | `retention_rules.csv`; `retirement_assets.csv` | Retention / CSV | Inspectability after retire | Supporting |
 
 ---
 
@@ -143,10 +143,12 @@ Paths abbreviated: files live under `data/` unless prefixed `knowledge/` or `sou
 4. **OOS narrative:** `data/oos_investigations.csv` + `knowledge/OOS_OOT_INVESTIGATION.md` → INJ-023.
 5. **EM/sterility:** `data/environmental_monitoring.csv`; `data/microbiology_results.csv`; `knowledge/STERILE_MANUFACTURING_ESCALATION.md` → INJ-022.
 6. **eBR/time:** `data/ebr_steps.csv`; `data/downtime_events.csv` → INJ-025 contemporaneous defect.
-7. **QP gap:** `data/release_packets.csv`; `data/supplier_audits.csv`; `source_documents/CMO_audit_commitment_2025_14.md` → INJ-028.
-8. **Integrity overlays:** audit gap INJ-029; shared account INJ-030; CoA transcription INJ-036; validation ambiguity INJ-031.
-9. **Policy:** prefer `knowledge/BATCH_RELEASE_EVIDENCE_POLICY.md` over `knowledge/BATCH_RELEASE_POLICY_OLD.md` after catalog status check; `knowledge/GXP_DATA_INTEGRITY_STANDARD.md` (eff. 2026-02-15).
-10. **Human factors:** `data/candidate_outputs.csv` omitted critical deviation → INJ-071.
+7. **Cleaning validation boundary:** `data/cleaning_validation.csv`; `data/production_schedule.csv` → INJ-026 (campaign sequence change; cite, do not auto-approve).
+8. **PAT / recipe drift:** `data/pat_models.csv`; `data/recipes.csv` → INJ-027 (version desync; preserve both versions).
+9. **QP gap:** `data/release_packets.csv`; `data/supplier_audits.csv`; `source_documents/CMO_audit_commitment_2025_14.md` → INJ-028.
+10. **Integrity overlays:** audit gap INJ-029; shared account INJ-030; CoA transcription INJ-036; validation ambiguity INJ-031.
+11. **Policy:** prefer `knowledge/BATCH_RELEASE_EVIDENCE_POLICY.md` over `knowledge/BATCH_RELEASE_POLICY_OLD.md` after catalog status check; `knowledge/GXP_DATA_INTEGRITY_STANDARD.md` (eff. 2026-02-15).
+12. **Human factors:** `data/candidate_outputs.csv` omitted critical deviation → INJ-071.
 
 ### 3.3 Authority, conflicts, gaps
 
@@ -220,12 +222,14 @@ Human-ready case file: extracted fields, duplicate candidates, clock board, list
 
 1. **Shipment/logger:** `data/shipments.csv`; `data/temperature_loggers.csv`; cold-chain source doc; `knowledge/COLD_CHAIN_ASSESSMENT.md` → INJ-051.
 2. **Quality/MA constraints:** batch/product quality status; `data/market_authorisations.csv` → block options that ignore holds/MA.
-3. **Shortage/CMO:** `data/supplier_risks.csv`; `data/inventory.csv`; `data/cmo_capacity.csv`; `data/vendor_contracts.csv` → INJ-054/055.
-4. **Ethics:** `data/allocation_constraints.csv`; `data/demand_forecast.csv`; `knowledge/SUPPLY_ALLOCATION_ETHICS.md` → INJ-056 options only.
-5. **Serialization/returns:** `data/serialisation_events.csv`; `data/packaging_events.csv`; `data/returns.csv` → INJ-052/053 supporting.
-6. **Customs:** `data/trade_documents.csv` → INJ-057.
-7. **Recall scope:** `data/recall_candidates.csv` + genealogy → INJ-058 (options/impact analysis only; no recall initiation).
-8. **Continuity:** `data/continuity_requirements.csv`; `knowledge/AI_DISABLED_CONTINUITY.md` → INJ-082.
+3. **Shortage:** `data/supplier_risks.csv`; `data/inventory.csv` → INJ-054.
+4. **CMO capacity conflict:** `data/cmo_capacity.csv`; `data/vendor_contracts.csv` → INJ-055.
+5. **Ethics:** `data/allocation_constraints.csv`; `data/demand_forecast.csv`; `knowledge/SUPPLY_ALLOCATION_ETHICS.md` → INJ-056 options only.
+6. **Serialization aggregation:** `data/serialisation_events.csv`; `data/packaging_events.csv` → INJ-052 supporting.
+7. **Counterfeit / returns:** `data/returns.csv`; `data/serialisation_events.csv` → INJ-053 supporting.
+8. **Customs:** `data/trade_documents.csv` → INJ-057.
+9. **Recall scope:** `data/recall_candidates.csv` + genealogy → INJ-058 (options/impact analysis only; no recall initiation).
+10. **Continuity:** `data/continuity_requirements.csv`; `knowledge/AI_DISABLED_CONTINUITY.md` → INJ-082.
 
 ### 5.3 Authority, conflicts, gaps
 
@@ -325,7 +329,7 @@ Always re-check `data/knowledge_catalog.csv` and `data/document_catalog.csv` for
 | IDMP mapping ambiguous | Stewardship required | Dual citation |
 | Logger–pallet unresolved | Logistics/QA human | Abstain on single truth |
 | DSR-17 open under LH-44 | Legal/Privacy/GxP co-decision | D-204 |
-| Full clinical/research inject deep automation | Outside D-001 POC scope | Register only; deferred assessment |
+| Full clinical/research inject deep automation | Outside A–C POC write path | Register complete (INJ-007..020 etc.); deferred assessment |
 
 ---
 
@@ -338,7 +342,8 @@ Always re-check `data/knowledge_catalog.csv` and `data/document_catalog.csv` for
 | `07_ONTOLOGY_SEMANTIC_LAYER.md` | INJ-039, 040, 045 |
 | `08_KNOWLEDGE_GRAPH_DECISION.md` | INJ-021, 037, 051, 058 |
 | `09_REQUIREMENTS_TRACEABILITY.md` | Workflow A/B/C requirement tests |
-| `ASSUMPTIONS_AND_DECISION_LOG.md` | A-201+ / D-201+ |
+| `ASSUMPTIONS_AND_DECISION_LOG.md` | A-201+ / D-201+; D-207 adopts this map |
+| `submission/evaluation/` | Suite datasets S01–S12 / graders cite injects for TEVV |
 
 ## Review record
 
@@ -348,3 +353,4 @@ Always re-check `data/knowledge_catalog.csv` and `data/document_catalog.csv` for
 | GxP/quality lead | GxP | Workflow A deep dive sufficient for pack design | §3 accepted | 2026-08-10 |
 | PV reviewer | Safety | Workflow B listedness/MedDRA covered | §4 accepted | 2026-08-10 |
 | Supply reviewer | Supply | Cold-chain and no-allocate stance clear | §5 accepted | 2026-08-10 |
+| Domain/evidence lead | Domain | Re-validated vs CSV/JSON: titles aligned; A/C deep-dive gaps closed; path abbreviations fixed | v1.1 | 2026-08-12 |

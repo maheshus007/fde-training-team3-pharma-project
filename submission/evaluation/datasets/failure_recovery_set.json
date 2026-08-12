@@ -1,0 +1,53 @@
+{
+  "cohort_id": "FAILURE-OUTAGE-RECOVERY",
+  "version": "1.0",
+  "description": "DoD failure / outage / recovery suites (EVALUATION_PLAN suite 8/11/12)",
+  "failure": [
+    {
+      "id": "FR-CHECKPOINT",
+      "inject": "INJ-080",
+      "path": "evaluation/public_fixtures/PUB-13.json",
+      "expect": "fail_closed_on_stale_resume",
+      "grader": "trajectory"
+    },
+    {
+      "id": "FR-STALE-AUTH",
+      "inject": "INJ-067",
+      "path": "evaluation/public_fixtures/PUB-09.json",
+      "expect": "deny_by_default",
+      "grader": "security"
+    }
+  ],
+  "outage": [
+    {
+      "id": "FR-DOW",
+      "inject": "INJ-076",
+      "path": "evaluation/public_fixtures/PUB-14.json",
+      "expect": "budget_stop",
+      "grader": "latency_cost"
+    },
+    {
+      "id": "FR-MODEL-OUTAGE",
+      "inject": "INJ-082",
+      "path": "evaluation/public_fixtures/PUB-10.json",
+      "expect": "ai_disabled_path_available",
+      "grader": "fixture_index"
+    }
+  ],
+  "recovery": [
+    {
+      "id": "FR-CONTINUITY",
+      "inject": "INJ-082",
+      "path": "evaluation/public_fixtures/PUB-10.json",
+      "expect": "ai_disabled_path_available",
+      "grader": "fixture_index"
+    },
+    {
+      "id": "FR-ROLLBACK",
+      "inject": "INJ-080",
+      "path": "evaluation/public_fixtures/PUB-13.json",
+      "expect": "fail_closed_on_stale_resume",
+      "grader": "trajectory"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-pharma.local/schemas/gate_response.schema.json",
+  "title": "Non-executing gate / continuity response (PUB-09..15)",
+  "description": "Participant-defined non-executing contract per PUBLIC_FIXTURE_INDEX.csv. Advisory only; no regulated side effects.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "workflow",
+    "status",
+    "gate_outcome",
+    "human_review",
+    "audit"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0" },
+    "workflow": {
+      "type": "string",
+      "enum": [
+        "security",
+        "reliability",
+        "privacy",
+        "integration",
+        "agent",
+        "finops",
+        "clinical"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pass", "fail", "abstain", "not_implemented"]
+    },
+    "gate_outcome": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string" },
+    "citations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "human_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "role"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "role": { "type": "string", "minLength": 1 }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["as_of", "runtime_mode"],
+      "properties": {
+        "as_of": { "type": "string" },
+        "runtime_mode": {
+          "type": "string",
+          "enum": ["ai_disabled_deterministic", "advisory_online"]
+        },
+        "input_hash": { "type": "string" }
+      }
+    }
+  }
+}

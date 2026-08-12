@@ -579,7 +579,7 @@ pages = {
 if __name__ == "__main__":
     Gui(pages=pages, css_file="style.css").run(
         title="AEGIS-PHARMA Support Console",
-        port=5000,
+        port=5050,
         dark_mode=False,
         run_browser=True,
         use_reloader=False,

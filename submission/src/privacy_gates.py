@@ -1,13 +1,26 @@
-"""Privacy gates — DSR vs GxP / legal hold (INJ-035 / INJ-061 / PUB-11)."""
+"""Privacy gates — DSR vs GxP / legal hold / purpose minimise (INJ-035 / INJ-061 / INJ-062)."""
 from __future__ import annotations
 
 from dataclasses import dataclass
+
+try:
+    from src.inject_controls import evaluate
+except ImportError:  # app/demo puts src/ on sys.path
+    from inject_controls import evaluate
 
 
 @dataclass(frozen=True)
 class HoldDecision:
     action: str
     reason: str
+
+
+def check_patient_support_minimise(case_id: str) -> HoldDecision:
+    control = evaluate("INJ-062")
+    return HoldDecision(
+        action=control.action,
+        reason=f"{case_id}: {control.notes} {control.observed}",
+    )
 
 
 def check_deletion_against_hold(subject_id: str, dsr_id: str) -> HoldDecision:

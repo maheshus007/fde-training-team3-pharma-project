@@ -7,7 +7,7 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — Product/value lead with Domain/evidence and Evaluation leads |
-| Version / date | 1.1 / 2026-08-10 |
+| Version / date | 1.2 / 2026-08-16 |
 | Reviewers | GxP/quality; Security/privacy; Architecture/integration |
 | Status | Reviewed |
 | Related requirements / ADRs | `case/INTEGRATED_CASE.md` §4–5; `data/ai_use_boundaries.csv`; artefacts 04–08; D-001..D-010; D-206; scoring hard gates in `requirements/SCORING_MODEL.md` |
@@ -32,6 +32,7 @@ Accountable owner: Product/value lead. Completion criteria: unique IDs across FR
 | E-908 | `data/decision_rights.csv` | RAPID inputs | Accountable roles vs ai_authority | Governance |
 | E-909 | `data/usability_findings.csv` | INJ-073 | Keyboard and colour-only defects | Accessibility |
 | E-910 | Artefacts 05–08; `EVIDENCE_MAP.md` | Phase 2 | Domain/evidence model | Design baseline |
+| E-911 | `data/injects.json`; `submission/src/inject_controls.py`; `submission/tests/test_inject_controls.py` | Challenge catalogue + executable controls | INJ-001..084 each resolve evidence and return an action | Deterministic; challenge files unread-write |
 
 ## 1. Stakeholder and business requirements
 
@@ -56,6 +57,7 @@ Accountable owner: Product/value lead. Completion criteria: unique IDs across FR
 | FR-A-05 | System flags QP release-packet gaps (e.g. missing supplier audit commitment) | Gap item references release_packets and supplier_audits | TEST-A-05 INJ-028 |
 | FR-A-06 | System outputs readiness assessment only (complete / incomplete / abstain reasons) | No release/reject/reprocess/recall action or API | TEST-A-06 prohibited write |
 | FR-A-07 | AI-disabled path performs FR-A-01..05 via rules/fixtures only | Same conflict detections with inference off | TEST-A-07 continuity |
+| FR-A-08 | System surfaces PAT model vs batch-recipe version desync and abstains on PAT-aligned readiness | PAT 2.4 vs recipe 2.3 both cited; no silent sync (INJ-027) | TEST-INJ-027 |
 
 ### Workflow B — PV intake and signal support
 
@@ -80,6 +82,9 @@ Accountable owner: Product/value lead. Completion criteria: unique IDs across FR
 | FR-C-03 | System includes trial/compassionate/commercial demand channels in option constraints | INJ-056 channels represented; ethics flags visible | TEST-C-03 INJ-056 |
 | FR-C-04 | System never creates reservations, allocations or shipments | No reserve/allocate/ship tools; agent_runs draft reservations rejected | TEST-C-04 prohibited supply; INJ-080 |
 | FR-C-05 | AI-disabled option enumeration works for continuity window | Rules/spreadsheet path per runbook | TEST-C-05 continuity |
+| FR-C-06 | System surfaces returned-serial print/distribution inconsistency without initiating recall | Returns SN-10001 cited; execution_status remains not_executed (INJ-053) | TEST-INJ-053 |
+| FR-C-07 | System treats double-booked CMO capacity as a constraint, not an allocation | CMO-IE window over-promise visible; no reserve/allocate (INJ-055) | TEST-INJ-055 |
+| FR-C-08 | System does not classify manufacturing-change reportability | RC-19 EU/US dispute remains open (INJ-049) | TEST-INJ-049 |
 
 ### Cross-workflow functional
 
@@ -90,6 +95,8 @@ Accountable owner: Product/value lead. Completion criteria: unique IDs across FR
 | FR-X-03 | Idempotency keys prevent duplicate side-effect attempts | Replay safe for read/reconcile | TEST-X-03 idempotency |
 | FR-X-04 | Budgets, step limits, checkpoints, rollback and kill switch enforced | Over-budget run stops; kill switch disables inference | TEST-X-04 agent bounds |
 | FR-X-05 | Evidence export produces inspection-ready citation pack | Export includes sources for A/B/C run | TEST-X-05 export |
+| FR-X-06 | Research and clinical write-path injects abstain (D-203) | INJ-007, 009–012, 015–017, 019–020 return action=abstain; no discovery/eligibility write | TEST-INJ-D02D03 |
+| FR-X-07 | Every catalogue inject has a named control and resolved evidence paths | 84 IDs; every cited file exists | TEST-INJ-REG |
 
 ## 3. Non-functional requirements
 
@@ -143,6 +150,7 @@ Accountable owner: Product/value lead. Completion criteria: unique IDs across FR
 | PRI-03 | DSR vs GxP retain conflict escalated, not auto-deleted | D-204 / D-401 | TEST-GXP-05 |
 | PRI-04 | Residency violations flagged | INJ-064 backup region | TEST-PRI-04 |
 | PRI-05 | Secondary use / commercial boundary respected | INJ-060/063 flags | TEST-PRI-05 |
+| PRI-06 | Patient-support free text is purpose-minimised; not routed to general agent context | PSP-17 copay-support text denied for general use (INJ-062) | TEST-INJ-062 |
 
 ## 5. Acceptance criteria
 
@@ -158,12 +166,12 @@ Cross-cutting definition of done for Phase 5 POC (extends E-901 §9):
 
 | Requirement IDs | Workflow | Architecture / control | Tests | Injects / evidence |
 |---|---|---|---|---|
-| FR-A-01..07, GXP-01..03,06 | A | ACL LIMS/MES/QMS; RER+C; blueprint A | TEST-A-01..07; TEST-GXP-* | INJ-021..028, 024, 071 |
-| FR-B-01..09, GXP-PV-*, PRI-02 | B | Safety ACL; MedDRA/listedness semantics | TEST-B-01..09 | INJ-037..044 |
-| FR-C-01..05 | C | Supply ACL; cold-chain association rules | TEST-C-01..05 | INJ-051..058, 080 |
-| FR-X-01..05, NFR-01..04,08 | All | Contracts, budgets, offline mode | TEST-X-*; TEST-NFR-* | INJ-082, 076, 069 |
-| SEC-01..05 | All | Zero-trust tools; hash pin; authz | TEST-SEC-* | INJ-065..070 |
-| PRI-01..05 | All | Purpose bind; retention policy | TEST-PRI-*; TEST-GXP-05 | INJ-035, 059..064 |
+| FR-A-01..08, GXP-01..03,06 | A | ACL LIMS/MES/QMS; RER+C; blueprint A | TEST-A-01..07; TEST-INJ-027; TEST-GXP-* | INJ-021..028, 024, 071 |
+| FR-B-01..09, GXP-PV-*, PRI-02 | B | Safety ACL; MedDRA/listedness semantics | TEST-B-01..09; TEST-INJ-041 | INJ-037..044 |
+| FR-C-01..08 | C | Supply ACL; cold-chain association rules | TEST-C-01..05; TEST-INJ-049/053/055 | INJ-049, 051..058, 080 |
+| FR-X-01..07, NFR-01..04,08 | All | Contracts, budgets, offline mode; inject register | TEST-X-*; TEST-INJ-REG; TEST-INJ-D02D03 | INJ-007, 009..012, 015..017, 019..020, 082, 076, 069 |
+| SEC-01..05 | All | Zero-trust tools; hash pin; authz | TEST-SEC-*; TEST-INJ-065/066 | INJ-065..070 |
+| PRI-01..06 | All | Purpose bind; retention; PSP minimise | TEST-PRI-*; TEST-GXP-05; TEST-INJ-062 | INJ-035, 059..064 |
 | BR-AEGIS-01..05, NFR-05..07 | All | Product governance | BEN-*; GOV-*; TEST-NFR-05..07 | INJ-001..003, 072..074, 084 |
 | Domain model | All | Artefacts 05–08; Evidence Map | Design review DR-P2 | INJ-005, 018, 024, 045 |
 
@@ -181,7 +189,7 @@ Cross-cutting definition of done for Phase 5 POC (extends E-901 §9):
 
 | ID | Type | Description | Impact | Owner | Due / trigger | Status |
 |---|---|---|---|---|---|
-| R-901 | Assumption | Planned test IDs will be implemented as automated tests in Phase 5 | Traceability gap if skipped | Build / Evaluation | POC gate | Open |
+| R-901 | Assumption | Planned TEST-A/B/C IDs continue incrementally; inject-control register (TEST-INJ-REG) and hard-gate suites now exist | Residual planned-ID gaps | Build / Evaluation | POC gate | Mitigated |
 | R-902 | Risk | BR-01 numeric −14% not fully measurable in offline POC | Benefits claim qualitative | Product | BEN-01 design | Open |
 | R-903 | Gap | Detailed UI wireframes not requirements-frozen | NFR-05 interpretation variance | Product / Build | Phase 5 | Open |
 | R-904 | Risk | Additional clinical/research injects pull scope beyond A–C | Dilution | Product | D-001 enforcement | Open |
@@ -193,6 +201,9 @@ Cross-cutting definition of done for Phase 5 POC (extends E-901 §9):
 | Unique FR/NFR/GXP/SEC/PRI IDs for A–C | §§2–4 | ID uniqueness review | This artefact | Accepted |
 | Acceptance criteria + planned tests | §§2–5 | Trace matrix §6 | E-901..E-910 | Accepted |
 | Hard gates non-waivable | §7; D-206 | Scoring alignment | E-902, E-906 | Accepted |
+| INJ-001..084 named control + resolved evidence | FR-X-07; inject_controls | TEST-INJ-REG | E-911 | Accepted |
+| D02/D03 write-path abstain | FR-X-06; D-203 | TEST-INJ-D02D03 | E-911 | Accepted |
+| INJ-027/049/053/055/062 behavioural controls | FR-A-08; FR-C-06..08; PRI-06 | TEST-INJ-027/049/053/055/062 | E-911 | Accepted |
 
 ## Review record
 

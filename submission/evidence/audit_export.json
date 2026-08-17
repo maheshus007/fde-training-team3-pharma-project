@@ -1,0 +1,276 @@
+{
+  "export_id": "AUD-PACK-POC",
+  "generated_at": "2026-08-16T04:26:57Z",
+  "runtime_mode": "ai_disabled_deterministic",
+  "notice": "Advisory citation pack only \u2014 no disposition, final PV, allocate, ship, or recall.",
+  "workflows": {
+    "A_batch": {
+      "request_id": "AUD-A",
+      "as_of": "2026-08-16T04:26:57Z",
+      "authorization": {
+        "user": "qp_eu_1",
+        "purpose": "batch_review_readiness",
+        "checked_at": "2026-08-16T04:26:57Z",
+        "decision": "allow",
+        "reason": "demo entitlement (execution-time re-check required in production)"
+      },
+      "workflow": "batch_evidence",
+      "batch_id": "NCB204-B24071",
+      "readiness_state": "conflicted_evidence",
+      "execution_status": "not_executed",
+      "evidence": [
+        {
+          "source": "data/batch_records.csv",
+          "record_id": "NCB204-B24071",
+          "authority": "MES / eBR export (synthetic)",
+          "effective_at": "2026-07-15",
+          "retrieved_at": "2026-08-16T04:26:57Z",
+          "facts": {
+            "status": "in_review",
+            "product": "NCB-204"
+          },
+          "integrity": {
+            "sha256": "demo",
+            "source_preserved": true
+          }
+        }
+      ],
+      "contradictions": [
+        {
+          "id": "C-GEN-01",
+          "theme": "genealogy_break",
+          "detail": "SUA-88 issued in warehouse, missing in MES genealogy (INJ-021)."
+        },
+        {
+          "id": "C-OOS-01",
+          "theme": "oos_oot_disagreement",
+          "detail": "LIMS OOS / stats OOT / notebook invalid \u2014 triple status retained (INJ-023)."
+        }
+      ],
+      "gaps": [
+        {
+          "id": "G-QP-01",
+          "detail": "CMO audit commitment missing from EU packet (INJ-028)."
+        }
+      ],
+      "abstentions": [
+        {
+          "id": "A-UNIT-01",
+          "detail": "mg/L vs \u00b5g/mL mapping approved=no \u2014 abstain, no silent convert (INJ-024)."
+        },
+        {
+          "id": "A-PAT-01",
+          "detail": "PAT model version not synchronized to batch recipe (pat version=2.4 approved=2.3; recipe NCB-UP-19 pat_model_version=2.3) \u2014 abstain on PAT-aligned readiness (INJ-027)."
+        }
+      ],
+      "applicable_documents": [],
+      "human_review": {
+        "required": true,
+        "role": "EU QP / QA reviewer",
+        "forced_acknowledgements": [
+          "genealogy break",
+          "OOS/OOT conflict",
+          "unit mapping abstention",
+          "PAT vs recipe version desync"
+        ]
+      },
+      "audit": {
+        "event_id": "AUD-BATCH-AUD-A"
+      },
+      "notice": "Draft support only \u2014 no disposition, release, reject, reprocess, or recall."
+    },
+    "B_pv": {
+      "request_id": "AUD-B",
+      "as_of": "2026-08-16T04:26:57Z",
+      "authorization": {
+        "user": "pv_reviewer",
+        "purpose": "pv_intake_support",
+        "checked_at": "2026-08-16T04:26:57Z",
+        "decision": "allow",
+        "reason": "demo entitlement"
+      },
+      "workflow": "pv_intake",
+      "case_ids": [
+        "PV-1001",
+        "PV-1009",
+        "PV-1014"
+      ],
+      "execution_status": "not_executed",
+      "evidence": [],
+      "source_facts": [
+        {
+          "case_id": "PV-1001",
+          "channel": "mixed",
+          "preserved": true
+        },
+        {
+          "case_id": "PV-1009",
+          "channel": "mixed",
+          "preserved": true
+        },
+        {
+          "case_id": "PV-1014",
+          "channel": "mixed",
+          "preserved": true
+        }
+      ],
+      "duplicate_candidates": [
+        {
+          "cluster_id": "DUP-PV-1001",
+          "members": [
+            "PV-1001",
+            "PV-1009",
+            "PV-1014"
+          ],
+          "note": "Candidate cluster only \u2014 no auto-merge (INJ-037)."
+        }
+      ],
+      "clock_evidence": [
+        {
+          "theme": "awareness_date_conflict",
+          "detail": "Awareness dates disagree across receipts \u2014 all clocks preserved (INJ-038)."
+        }
+      ],
+      "terminology": [
+        {
+          "theme": "meddra_version_mismatch",
+          "detail": "MedDRA version labels retained with coding (INJ-039)."
+        }
+      ],
+      "listedness_context": [
+        {
+          "theme": "expectedness_source_conflict",
+          "detail": "IB / CCDS / local label misaligned \u2014 no final expectedness (INJ-040)."
+        }
+      ],
+      "contradictions": [],
+      "gaps": [
+        {
+          "id": "G-AUTH-01",
+          "detail": "Social-media authenticity uncertain where applicable (INJ-042)."
+        }
+      ],
+      "abstentions": [
+        {
+          "id": "A-PV-01",
+          "detail": "No final seriousness, causality, expectedness, or reportability."
+        }
+      ],
+      "required_reviews": [
+        "safety physician"
+      ],
+      "human_review": {
+        "required": true,
+        "role": "Safety Physician"
+      },
+      "audit": {
+        "event_id": "AUD-PV-AUD-B"
+      },
+      "notice": "Draft support only \u2014 humans remain accountable for PV decisions."
+    },
+    "C_supply": {
+      "request_id": "AUD-C",
+      "as_of": "2026-08-16T04:26:57Z",
+      "authorization": {
+        "user": "planner",
+        "purpose": "supply_options_draft",
+        "checked_at": "2026-08-16T04:26:57Z",
+        "decision": "allow",
+        "reason": "demo entitlement"
+      },
+      "workflow": "supply_options",
+      "event_id": "SH-901",
+      "root_lot": "NCB204-B24062",
+      "execution_status": "not_executed",
+      "no_side_effects": true,
+      "evidence": [],
+      "options": [
+        {
+          "option_id": "OPT-1",
+          "status": "draft",
+          "summary": "Defer allocation on NCB204-B24062; escalate Quality hold assessment (INJ-051)."
+        },
+        {
+          "option_id": "OPT-2",
+          "status": "draft",
+          "summary": "Enumerate shortage options under MA / trial / CU constraints (INJ-054 / INJ-056)."
+        }
+      ],
+      "constraints": [
+        {
+          "id": "Q-HOLD",
+          "detail": "Quality status change forbidden for this path."
+        },
+        {
+          "id": "NO-ALLOC",
+          "detail": "Reserve / allocate / ship not available as tools."
+        }
+      ],
+      "quality_holds": [
+        {
+          "lot": "NCB204-B24062",
+          "status": "under_assessment"
+        }
+      ],
+      "approvals_required": [
+        "Supply Governance Board"
+      ],
+      "approval_required": {
+        "role": "Supply Governance Board",
+        "required": true
+      },
+      "contradictions": [],
+      "gaps": [
+        {
+          "id": "G-CC-01",
+          "detail": "Cold-chain logger clock / pallet association may be disputed (INJ-051)."
+        },
+        {
+          "id": "G-CF-01",
+          "detail": "Returned serials have inconsistent print/distribution history (return_rows=2 serials=['SN-10001']) \u2014 no recall initiation (INJ-053)."
+        },
+        {
+          "id": "G-CMO-01",
+          "detail": "CMO capacity conflict CMO-IE 2026-W34 capacity=2 NTG=2 other=1 \u2014 constraint only, not an allocation (INJ-055)."
+        }
+      ],
+      "abstentions": [
+        {
+          "id": "A-VAR-01",
+          "detail": "Manufacturing-change classification remains open (RC-19 EU=Type II proposed US=CBE-30 proposed dispute=open) \u2014 AEGIS does not classify (INJ-049)."
+        }
+      ],
+      "human_review": {
+        "required": true,
+        "role": "Supply Governance Board"
+      },
+      "audit": {
+        "event_id": "AUD-SUPPLY-AUD-C"
+      },
+      "notice": "Draft options only \u2014 no reserve, allocate, ship, quality-status change, or recall."
+    }
+  },
+  "cross_cutting": {
+    "protocol": {
+      "subject_id": "S-301-044",
+      "site_id": "IN-014",
+      "site_approved_protocol": "NCB204-301 v4.1",
+      "global_current_protocol": "NCB204-301 v5.0",
+      "eligibility_decision": "not_decided",
+      "action": "surface_conflict_abstain",
+      "flags": [
+        "Site vs global protocol version divergence (INJ-013): ('5.0:global_current', '4.1:current_IN_pending_amendment', '3.2:obsolete_but_site_cached').",
+        "Eligibility not decided (INJ-014 / abstain).",
+        "Human clinical accountability preserved (D-203)."
+      ]
+    },
+    "psp_minimise": {
+      "action": "deny",
+      "reason": "PSP-17: Purpose limitation: copay-support free text is not a general PV/batch context. ('PSP-17 purpose=copay support', 'free_text exceeds copay-support purpose \u2014 minimise; do not route to general agent context')"
+    },
+    "dsr_hold": {
+      "action": "restrict_document_do_not_delete",
+      "reason": "Deletion for S-301-044 under DSR-17 blocked: legal hold / trial integrity conflict (INJ-061 / PUB-11). Document restriction only."
+    }
+  }
+}

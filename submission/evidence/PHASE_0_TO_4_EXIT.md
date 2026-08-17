@@ -35,3 +35,14 @@ python submission/scripts/test.py
 ## Known package limitation
 
 `python run_capstone.py --check` fails on AppleDouble `prompts/._*.md` UTF-8 decode; challenge tools left unmodified (D-006).
+
+## Later verification (2026-08-16)
+
+Phase 0–4 counts above are historical. Current machine evidence (do not back-date the Phase 4 exit):
+
+| Check | Result |
+|---|---|
+| `python submission/scripts/test.py` | Per-test `test_results.json` (see that file for live count) |
+| Inject register | `INJECT_CONTROL_REGISTER.md` — INJ-001..084 |
+| A/B/C citation pack | `audit_export.json` |
+| Evaluation harness | Re-run `python submission/scripts/evaluate.py` → `evaluation_results.json` |

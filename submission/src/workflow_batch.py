@@ -4,6 +4,11 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 
+try:
+    from src.inject_controls import evaluate
+except ImportError:  # app/demo puts src/ on sys.path
+    from inject_controls import evaluate
+
 
 def reconcile_batch(batch_id: str, request_id: str, user: str) -> dict[str, Any]:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -54,7 +59,15 @@ def reconcile_batch(batch_id: str, request_id: str, user: str) -> dict[str, Any]
             {
                 "id": "A-UNIT-01",
                 "detail": "mg/L vs µg/mL mapping approved=no — abstain, no silent convert (INJ-024).",
-            }
+            },
+            {
+                "id": "A-PAT-01",
+                "detail": (
+                    "PAT model version not synchronized to batch recipe "
+                    f"({evaluate('INJ-027').observed[0]}; {evaluate('INJ-027').observed[1]}) "
+                    "— abstain on PAT-aligned readiness (INJ-027)."
+                ),
+            },
         ],
         "applicable_documents": [],
         "human_review": {
@@ -64,6 +77,7 @@ def reconcile_batch(batch_id: str, request_id: str, user: str) -> dict[str, Any]
                 "genealogy break",
                 "OOS/OOT conflict",
                 "unit mapping abstention",
+                "PAT vs recipe version desync",
             ],
         },
         "audit": {"event_id": f"AUD-BATCH-{request_id}"},

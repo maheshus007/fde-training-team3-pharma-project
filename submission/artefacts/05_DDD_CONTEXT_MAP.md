@@ -7,10 +7,10 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — Domain / evidence lead |
-| Version / date | 1.1 / 2026-08-10 |
+| Version / date | 1.2 / 2026-08-16 |
 | Reviewers | Architecture/integration lead; GxP/quality lead; Product/value lead |
 | Status | Reviewed |
-| Related requirements / ADRs | INJ-005, INJ-021, INJ-045; `case/INTEGRATED_CASE.md` §§2–5; `case/SOURCE_SYSTEM_FACT_PACK.md`; D-001, D-002, D-201..D-203 |
+| Related requirements / ADRs | INJ-005, INJ-007, INJ-009..012, INJ-015..017, INJ-019, INJ-020, INJ-021, INJ-045; `case/INTEGRATED_CASE.md` §§2–5; `case/SOURCE_SYSTEM_FACT_PACK.md`; D-001, D-002, D-201..D-203 |
 
 ## Purpose
 
@@ -51,8 +51,8 @@ Accountable owner: Domain/evidence lead. Completion criteria: each POC workflow 
 
 | Context | Core responsibility | Primary systems (E-502) | POC workflow touch | Owner role |
 |---|---|---|---|---|
-| Research / Discovery | Compound, assay, omics evidence; research-only models | ELN, assay, compound registry, BIOX-ELN | Identity collisions into Manufacturing/Regulatory (INJ-005, INJ-008) | Research steward |
-| Clinical | Protocol, consent, eligibility, endpoints, clocks | EDC, CTMS, eConsent, IRT, wearables | Time integrity inputs (INJ-018); no eligibility determination by AI | Clinical ops |
+| Research / Discovery | Compound, assay, omics evidence; research-only models | ELN, assay, compound registry, BIOX-ELN | Identity collisions into Manufacturing/Regulatory (INJ-005, INJ-008). Write-path abstain for assay drift, omics bias, image-forensics, unqualified models and target-evidence conflict (INJ-007, INJ-009, INJ-010, INJ-011, INJ-012) | Research steward |
+| Clinical | Protocol, consent, eligibility, endpoints, clocks | EDC, CTMS, eConsent, IRT, wearables | Time integrity inputs (INJ-018); protocol/eligibility conflicts retained without deciding eligibility (INJ-013, INJ-014). Write-path abstain for IRT outage, unblinding, eConsent mismatch, adjudication backlog and site-inspection automation (INJ-015, INJ-016, INJ-017, INJ-019, INJ-020) | Clinical ops |
 | Manufacturing | Genealogy, eBR, PAT, campaign sequence | ERP, MES, eBR, historian, warehouse | Workflow A (INJ-021..028) | Manufacturing / CMO liaison |
 | Laboratory (within Mfg/QC) | Assay results, OOS/OOT, units | LIMS, CDS, instruments | Workflow A unit/OOS (INJ-023, INJ-024) | QC |
 | Quality | Deviations, CAPA, validation state, supplier quality, release packet completeness | eQMS, DMS, training, supplier quality | Workflow A readiness; never disposition | Quality / QP support |
@@ -121,8 +121,27 @@ ACL rules (all systems) — decision D-202:
 | Product IDMP merge | Regulatory master-data stewardship | Show conflict | Auto-merge |
 | Stock reservation / shipment | Supply execution systems | Rank options | Reserve, allocate, ship |
 | Entitlements | IAM | Re-check at execution | Trust stale gateway cache |
+| Research assay / model / target decision | Research / translational SoR | Cite fixture evidence; abstain | Comparability, portfolio promotion, or target-validation write (INJ-007, INJ-009..012) |
+| Clinical eligibility / randomization / unblinding / endpoint close | Clinical ops / IRT / imaging core | Cite protocol, consent and clock facts | Eligibility, emergency assignment, unblinding resolution, or adjudication (INJ-014, INJ-015, INJ-016, INJ-019) |
 
 Change control for ACL mappings is owned by Domain/evidence with Architecture review; emergency vendor hotfixes without retrospective approval are surfaced as defects (INJ-034), not bypassed.
+
+### 6.1 Research and clinical out-of-write-path injects (D-203)
+
+These injects are in the challenge catalogue and have resolved evidence files. AEGIS treats them as identity/time/trust suppliers. `submission/src/inject_controls.py` returns `abstain` (TEST-INJ-REG). No discovery or clinical write-path workflow is added.
+
+| Inject | Title | Cited evidence | AEGIS action |
+|---|---|---|---|
+| INJ-007 | Assay drift | `assay_results.csv`; `instruments.csv`; `reagent_lots.csv` | Abstain — no comparability decision |
+| INJ-009 | Omics cohort bias | `omics_cohorts.csv`; `model_performance.csv` | Abstain — no translational promotion |
+| INJ-010 | Preclinical image manipulation concern | `preclinical_studies.csv`; `image_forensics.csv` | Abstain — no forensics disposition |
+| INJ-011 | Unqualified research model | `model_registry.csv` | Abstain — no intended-use grant |
+| INJ-012 | Target-evidence conflict | `target_evidence.csv`; `data_licenses.csv` | Abstain — dual-cite only |
+| INJ-015 | Randomization service outage | `randomization_events.csv`; `downtime_events.csv` | Abstain — no emergency assignment |
+| INJ-016 | Potential unblinding | `support_tickets.csv`; `access_logs.csv` | Abstain — no unblinding resolution |
+| INJ-017 | eConsent withdrawal mismatch | `consents.csv`; `specimens.csv`; `processing_events.csv` | Abstain — no specimen-processing write |
+| INJ-019 | Endpoint adjudication backlog | `endpoint_packets.csv`; `imaging_reviews.csv` | Abstain — no endpoint close |
+| INJ-020 | Site inspection risk | `site_metrics.csv`; `access_logs.csv` | Abstain — no inspection judgement |
 
 ## 7. Event semantics
 
@@ -153,7 +172,8 @@ Time semantics: preserve source precision (date-only vs timestamp vs timezone un
 | Seven business contexts + AEGIS consumer | Context map §2–4 | Review against SOURCE_SYSTEM_FACT_PACK | E-502 | Design accepted |
 | LIMS/MES/QMS/Safety ACLs | §5 ACL table; D-202 | Contract tests on unit/identity/time preservation | E-505, E-510, E-512 | Design accepted |
 | INJ-005 / INJ-021 / INJ-045 explicitly modeled | Aggregates + relationships | Fixture assertions on BIOX, SUA-88, NCB204-DE | E-503..E-506 | Design accepted |
-| No regulated write paths | Aggregate invariants + E-511 | Prohibited-action suite (later) | `data/ai_use_boundaries.csv` | Design accepted |
+| No regulated write paths | Aggregate invariants + E-511 | Prohibited-action suite; TEST-INJ-REG | `data/ai_use_boundaries.csv` | Accepted |
+| D02/D03 write-path injects named and abstained | §6.1; D-203 | TEST-INJ-REG D02/D03 abstain | `submission/src/inject_controls.py` | Accepted |
 
 ## Review record
 

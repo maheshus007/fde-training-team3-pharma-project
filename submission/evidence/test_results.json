@@ -1,18 +1,800 @@
 {
   "suite": "submission/tests + evaluation graders",
   "runner": "python submission/scripts/test.py",
-  "generated_at": "2026-08-12T06:51:35Z",
+  "generated_at": "2026-08-16T04:26:57Z",
   "runtime_mode": "ai_disabled_deterministic",
-  "tests_run": 46,
-  "passed": 46,
+  "tests_run": 60,
+  "passed": 60,
   "failed": 0,
   "status": "OK",
   "results": [
     {
-      "suite": "submission/tests + submission.evaluation.graders",
-      "test_id": "ALL",
+      "suite": "test_authorization_freshness",
+      "test_id": "test_authorization_freshness.AuthorizationFreshnessTests.test_fixture_active_qp_allowed",
       "requirement_ids": [
-        "RUB-13",
+        "SEC-01",
+        "FR-X-01"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-067"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_authorization_freshness.py"
+    },
+    {
+      "suite": "test_authorization_freshness",
+      "test_id": "test_authorization_freshness.AuthorizationFreshnessTests.test_fixture_contractor_stale_cache_denied",
+      "requirement_ids": [
+        "SEC-01",
+        "FR-X-01"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-067"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_authorization_freshness.py"
+    },
+    {
+      "suite": "test_authorization_freshness",
+      "test_id": "test_authorization_freshness.AuthorizationFreshnessTests.test_fresh_allow",
+      "requirement_ids": [
+        "SEC-01",
+        "FR-X-01"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-067"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_authorization_freshness.py"
+    },
+    {
+      "suite": "test_authorization_freshness",
+      "test_id": "test_authorization_freshness.AuthorizationFreshnessTests.test_revoked_denied_even_if_cache_allows",
+      "requirement_ids": [
+        "SEC-01",
+        "FR-X-01"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-067"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_authorization_freshness.py"
+    },
+    {
+      "suite": "test_authorization_freshness",
+      "test_id": "test_authorization_freshness.AuthorizationFreshnessTests.test_stale_cache_denied",
+      "requirement_ids": [
+        "SEC-01",
+        "FR-X-01"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-067"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_authorization_freshness.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.ChallengeDataTensionTests.test_hash_drift_is_recorded_not_overwritten",
+      "requirement_ids": [
+        "SEC-02"
+      ],
+      "control_ids": [
+        "A-504",
+        "INJ-065",
+        "INJ-066"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.ChallengeDataTensionTests.test_inj002_records_missing_supply_kpi",
+      "requirement_ids": [
+        "BR-AEGIS-05"
+      ],
+      "control_ids": [
+        "A-501"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.ChallengeDataTensionTests.test_inj041_records_join_gap",
+      "requirement_ids": [
+        "FR-B-06",
+        "PRI-02"
+      ],
+      "control_ids": [
+        "A-502",
+        "TEST-INJ-041"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.ChallengeDataTensionTests.test_inj046_does_not_invent_pending_us_label",
+      "requirement_ids": [
+        "FR-X-07"
+      ],
+      "control_ids": [
+        "A-503",
+        "TEST-INJ-046"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj013_014_use_fixture_protocol_versions",
+      "requirement_ids": [
+        "D-203"
+      ],
+      "control_ids": [
+        "TEST-INJ-013",
+        "TEST-INJ-014"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj027_pat_recipe_mismatch_surfaced",
+      "requirement_ids": [
+        "FR-A-08"
+      ],
+      "control_ids": [
+        "TEST-INJ-027"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj049_variation_not_classified",
+      "requirement_ids": [
+        "FR-C-08"
+      ],
+      "control_ids": [
+        "TEST-INJ-049"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj053_counterfeit_no_recall",
+      "requirement_ids": [
+        "FR-C-06"
+      ],
+      "control_ids": [
+        "TEST-INJ-053"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj055_cmo_overpromise_is_constraint",
+      "requirement_ids": [
+        "FR-C-07"
+      ],
+      "control_ids": [
+        "TEST-INJ-055"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_inj062_patient_support_minimised",
+      "requirement_ids": [
+        "PRI-06"
+      ],
+      "control_ids": [
+        "TEST-INJ-062"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.GapInjectBehaviourTests.test_research_clinical_write_path_abstains",
+      "requirement_ids": [
+        "FR-X-06"
+      ],
+      "control_ids": [
+        "TEST-INJ-D02D03",
+        "D-203"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.InjectRegisterTests.test_catalog_is_exactly_84",
+      "requirement_ids": [
+        "FR-X-07"
+      ],
+      "control_ids": [
+        "TEST-INJ-REG"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.InjectRegisterTests.test_evaluate_all_covers_84",
+      "requirement_ids": [
+        "FR-X-07"
+      ],
+      "control_ids": [
+        "TEST-INJ-REG"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_inject_controls",
+      "test_id": "test_inject_controls.InjectRegisterTests.test_every_inject_has_resolved_evidence",
+      "requirement_ids": [
+        "FR-X-07"
+      ],
+      "control_ids": [
+        "TEST-INJ-REG"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_inject_controls.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_batch_recall_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_batch_reject_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_batch_release_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_batch_reprocess_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_clean_batch_allowed",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_pv_final_causality_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_pv_final_seriousness_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_pv_reportability_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_pv_signal_confirmation_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_supply_allocate_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_supply_quality_status_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_supply_recall_initiate_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_supply_reserve_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_prohibited_actions",
+      "test_id": "test_prohibited_actions.ProhibitedActionTests.test_supply_ship_denied",
+      "requirement_ids": [
+        "GXP-03",
+        "FR-A-06",
+        "FR-B-08",
+        "FR-C-04"
+      ],
+      "control_ids": [
+        "HG-PROHIBITED",
+        "INJ-006"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_prohibited_actions.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_approved_read_tool_allowed",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_data_style_poisoned_disposition_write_denied",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_model_hash_match_allowed",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_model_hash_mismatch_denied",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_poisoned_tool_denied",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_tool_trust",
+      "test_id": "test_tool_trust.ToolTrustTests.test_unsigned_tool_denied",
+      "requirement_ids": [
+        "SEC-02",
+        "SEC-03"
+      ],
+      "control_ids": [
+        "HG-SEC",
+        "INJ-065",
+        "INJ-066",
+        "INJ-070"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_tool_trust.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_additional_properties_denied",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_negative_batch_prohibited",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_negative_pv_causality_fails_closed",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_negative_pv_prohibited",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_negative_supply_side_effect",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_positive_batch",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_positive_pv",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_positive_supply",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_prohibited_helpers_cover_workflows",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_workflow_contracts",
+      "test_id": "test_workflow_contracts.WorkflowContractTests.test_resolvers_available",
+      "requirement_ids": [
+        "FR-X-02"
+      ],
+      "control_ids": [
+        "HG-SCHEMA"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/tests/test_workflow_contracts.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_authority_missing_fails",
+      "requirement_ids": [
         "ARTEFACT_EXPECTATIONS.TEVV"
       ],
       "control_ids": [
@@ -22,10 +804,179 @@
         "HG-SUBGROUP"
       ],
       "result": "pass",
-      "timestamp": "2026-08-12T06:51:35Z",
+      "timestamp": "2026-08-16T04:26:57Z",
       "runtime_mode": "ai_disabled_deterministic",
-      "evidence_path": "submission/tests;submission/evaluation/graders/test_graders.py",
-      "tests_run": 46
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_find_disposition_language",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_latency_budget_fail",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_positive_batch_all_core_graders_pass",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_prohibited_negative_batch_fails",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_schema_sample_positive",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_security_poisoned_tool_fails",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_security_stale_auth_fails",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_subgroup_requires_route_for_ar",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_temporal_unit_silent_convert_fails",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
+    },
+    {
+      "suite": "test_graders",
+      "test_id": "test_graders.GraderTests.test_trajectory_side_effect_fails",
+      "requirement_ids": [
+        "ARTEFACT_EXPECTATIONS.TEVV"
+      ],
+      "control_ids": [
+        "HG-SCHEMA",
+        "HG-PROHIBITED",
+        "HG-SEC",
+        "HG-SUBGROUP"
+      ],
+      "result": "pass",
+      "timestamp": "2026-08-16T04:26:57Z",
+      "runtime_mode": "ai_disabled_deterministic",
+      "evidence_path": "submission/evaluation/graders/test_graders.py"
     }
   ],
   "evidence_path": "submission/evidence/test_results.json"

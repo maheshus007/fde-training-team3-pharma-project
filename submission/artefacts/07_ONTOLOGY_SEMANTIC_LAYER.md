@@ -7,10 +7,10 @@
 | Field | Entry |
 |---|---|
 | Team / owner | Team 3 — Domain / evidence lead |
-| Version / date | 1.1 / 2026-08-10 |
+| Version / date | 1.2 / 2026-08-16 |
 | Reviewers | PV governance (Safety); Regulatory; Architecture/integration |
 | Status | Reviewed |
-| Related requirements / ADRs | INJ-039, INJ-040, INJ-045; `knowledge/IDMP_MASTER_DATA_GOVERNANCE.md`; `knowledge/PV_LISTEDNESS_AUTHORITY.md`; D-201, D-205 |
+| Related requirements / ADRs | INJ-039, INJ-040, INJ-045, INJ-046, INJ-049; `knowledge/IDMP_MASTER_DATA_GOVERNANCE.md`; `knowledge/PV_LISTEDNESS_AUTHORITY.md`; D-201, D-205; A-503 |
 
 ## Purpose
 
@@ -34,6 +34,8 @@ Accountable owner: Domain/evidence lead. Completion criteria: competency questio
 | E-710 | `data/timezone_rules.csv`; `data/wearable_readings.csv`; `data/temperature_loggers.csv` | Time sources | DST and local_unknown clocks | INJ-018, INJ-051 |
 | E-711 | `data/regional_rules.csv`; `data/market_authorisations.csv` | Regional / MA | Jurisdiction-specific constraints | Sparse fixtures |
 | E-712 | `data/api_contract_versions.csv` | Interface semantics | ICSR date precision variable; LIMS unit field rename | Contract ontology |
+| E-713 | `data/regulatory_changes.csv` | INJ-049 | RC-19 EU Type II proposed vs US CBE-30 proposed; `dispute=open` | Classification not resolved by AEGIS |
+| E-714 | `data/product_labels.csv`; `data/market_authorisations.csv` | INJ-046 files | EU/US/IN labels `approved` and MAs `authorised` (versions 6/5/3) | Case narrative states US pending and two absent distributor leaflets — do not invent those rows (A-503) |
 
 ## 1. Competency questions
 
@@ -94,7 +96,8 @@ Conflict handling for INJ-045: emit `IdentityConflict` with both MedicinalProduc
 | Knowledge time vs event time | Record `recorded_at` separately from `event_time` | eBR back-entry (INJ-025); PV receipt vs awareness (INJ-038) |
 | Timezone / DST | Require explicit timezone or mark `timezone_unknown`; apply `timezone_rules.csv` only when site known | Wearable local_unknown on 2026-03-29 DST (INJ-018); logger LG-31 mixed zones (INJ-051) |
 | Precision | Preserve date-only vs second precision (E2B variable) | `api_contract_versions.csv` Safety ICSR |
-| Jurisdiction | Assertions qualified by country/region (EU, US, IN, AE, …) | IN local label vs CCDS (INJ-040); MA divergence (INJ-046) |
+| Jurisdiction | Assertions qualified by country/region (EU, US, IN, AE, …) | IN local label vs CCDS (INJ-040); cite present MA/label rows for INJ-046 without inventing pending/absent leaflets (A-503) |
+| Variation class | Manufacturing-change reportability remains a human regulatory assertion | INJ-049: dual-cite EU Type II proposed vs US CBE-30 proposed; `dispute=open`; AEGIS does not classify |
 | Supersession | Old protocol/policy retained with status=superseded | Protocol v4.1 vs v5.0 under `source_documents/`; BATCH_RELEASE_POLICY_OLD |
 
 Rule: never project a fact into another jurisdiction or effective period without an explicit applicability record.
@@ -143,6 +146,7 @@ Acceptance: competency questions CQ-1..CQ-7 answered with citations and abstenti
 | R-702 | Assumption | Sparse `controlled_vocabularies.csv` plus fixture codes suffice for POC | Broader IDMP/SPOR needed in production | Regulatory | Post-POC | Accepted for POC |
 | R-703 | Gap | Full formal ontology (OWL) not authored | Rely on contracts + glossary | Domain | Revisit if KG adopted later | Open |
 | R-704 | Risk | Treating CCDS as globally listed | Wrong expectedness in IN | PV | INJ-040 fixture | Open |
+| R-705 | Gap | Case INJ-046 (US pending; two absent leaflets) is not instantiated in cited CSVs | Silent “cleanup” would fabricate evidence | Regulatory | A-503; TEST-INJ-046 | Accepted — record, do not invent |
 
 ## Traceability and acceptance
 
@@ -152,6 +156,8 @@ Acceptance: competency questions CQ-1..CQ-7 answered with citations and abstenti
 | Listedness multi-source | §4 jurisdiction | IB/CCDS/IN label test | E-704 | Design accepted |
 | IDMP non-merge | §3 / CQ-5; D-201 | NCB-204 vs NCB204-DE | E-705, E-708 | Design accepted |
 | Temporal/timezone honesty | §4 | Wearable and logger fixtures | E-710 | Design accepted |
+| Variation classification left open (INJ-049) | §4 variation class | TEST-INJ-049; supply abstention A-VAR-01 | E-713 | Accepted |
+| INJ-046 case/data tension recorded | §4 jurisdiction; A-503 | TEST-INJ-046 | E-714 | Accepted |
 
 ## Review record
 

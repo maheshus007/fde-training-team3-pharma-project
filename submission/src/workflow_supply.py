@@ -4,6 +4,11 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 
+try:
+    from src.inject_controls import evaluate
+except ImportError:  # app/demo puts src/ on sys.path
+    from inject_controls import evaluate
+
 
 def build_supply_response(
     event_id: str, root_lot: str, request_id: str, user: str
@@ -52,9 +57,31 @@ def build_supply_response(
             {
                 "id": "G-CC-01",
                 "detail": "Cold-chain logger clock / pallet association may be disputed (INJ-051).",
+            },
+            {
+                "id": "G-CF-01",
+                "detail": (
+                    "Returned serials have inconsistent print/distribution history "
+                    f"({evaluate('INJ-053').observed[0]}) — no recall initiation (INJ-053)."
+                ),
+            },
+            {
+                "id": "G-CMO-01",
+                "detail": (
+                    f"CMO capacity conflict {evaluate('INJ-055').observed[0]} "
+                    "— constraint only, not an allocation (INJ-055)."
+                ),
+            },
+        ],
+        "abstentions": [
+            {
+                "id": "A-VAR-01",
+                "detail": (
+                    f"Manufacturing-change classification remains open "
+                    f"({evaluate('INJ-049').observed[0]}) — AEGIS does not classify (INJ-049)."
+                ),
             }
         ],
-        "abstentions": [],
         "human_review": {
             "required": True,
             "role": "Supply Governance Board",

@@ -3,7 +3,7 @@
 | Field | Entry |
 |---|---|
 | Custodian | Product / value lead (Phase 2 custodian: Domain / evidence lead) |
-| Version / date | 1.2 / 2026-08-10 |
+| Version / date | 1.3 / 2026-08-16 |
 | Status | Living log for Phases 0–2 and Phase 4 (extend in later phases) |
 | Related | `PACKAGE_SCOPE_AND_ASSUMPTIONS.md`; `submission/evidence/PREFLIGHT_REPORT.md`; artefacts 00–09; `EVIDENCE_MAP.md`; artefacts 16–21 |
 
@@ -174,7 +174,7 @@ Complements abbreviated A-013/A-014/D-011/D-012 above. New IDs use the A-20x / D
 | A-202 | Contextual authority per `case/SOURCE_SYSTEM_FACT_PACK.md` applies: no system is universally authoritative; effective time and role bind every citation | Domain / evidence | Fact pack; INJ-031; INJ-040 | Package introduces a single enterprise SoR declaration (not present) | Accepted |
 | A-203 | Sparse controlled vocabularies and IDMP rows in fixtures are representative challenge conditions; production SPOR completeness is out of POC scope | Domain / Regulatory | `controlled_vocabularies.csv`; `idmp_mappings.csv`; INJ-045 | Examiner requires full IDMP/SPOR implementation for pass | Accepted |
 | A-204 | Document catalog entries with `availability=intentionally_absent` or `referenced_missing` (e.g. DOC-ECTD-1) are deliberate gaps; absence must be cited, never filled with invented content | Domain / GxP | `document_catalog.csv`; INJ-048 | Missing file appears in package with verified hash | Accepted |
-| A-205 | Phase 2 planned test IDs in `09_REQUIREMENTS_TRACEABILITY.md` will be implemented as automated tests during Phase 5; design acceptance does not imply code existence yet | Evaluation / Build | Artefact 09 §§2–6 | Phase 5 gate without named tests | Open |
+| A-205 | Phase 2 planned TEST-A/B/C IDs remain incrementally implemented; inject-control register TEST-INJ-REG now exists for INJ-001..084 | Evaluation / Build | Artefact 09 §§2–6; `submission/tests/test_inject_controls.py` | Phase 5 gate without named inject tests | Accepted for inject register |
 
 ### Decisions
 
@@ -204,3 +204,43 @@ Complements abbreviated A-013/A-014/D-011/D-012 above. New IDs use the A-20x / D
 | Date | Change | By |
 |---|---|---|
 | 2026-08-10 | Phase 2 detailed append: assumptions A-201..A-205 and decisions D-201..D-207; artefacts 05–09 and EVIDENCE_MAP completed under `submission/` | Team 3 |
+| 2026-08-16 | A-205 narrowed: TEST-INJ-REG implemented; remaining TEST-A/B/C IDs still incremental | Team 3 |
+
+---
+
+## Phase 5 — Inject coverage close (2026-08-16)
+
+Challenge catalogues remain authoritative. `EVIDENCE_MAP.md` is not used as a coverage source. Case/data tensions and hash drift are recorded; challenge files are not overwritten.
+
+### Assumptions
+
+| ID | Statement | Owner | Evidence / basis | Invalidation trigger | Status |
+|---|---|---|---|---|---|
+| A-501 | `data/kpi_conflicts.csv` has Manufacturing, Quality, Safety and Clinical rows and no Supply service-level row, although INJ-002 case text names Supply service level. Do not invent a Supply KPI row | Product / Domain | `kpi_conflicts.csv`; `data/injects.json` INJ-002 | Challenge maintainers add a Supply KPI row | Accepted |
+| A-502 | `data/sensitive_segments.csv` keys pregnancy/minor on PV-1020; `data/icsr_cases.csv` contains only PV-1001, PV-1009, PV-1014. Cite the join gap; do not fabricate ICSR PV-1020 | Privacy / PV | INJ-041 fixtures | ICSR row PV-1020 appears in the package | Accepted |
+| A-503 | INJ-046 case text states EU approved, US pending and two absent distributor leaflets. Cited files show EU/US/IN labels `approved` and MAs `authorised` (versions 6/5/3). Cite present rows; do not invent pending/absent leaflets | Regulatory / Domain | `product_labels.csv`; `market_authorisations.csv`; case INJ-046 | Package adds pending-US or leaflet-absent records | Accepted |
+| A-504 | Disk SHA-256 of `knowledge/MALICIOUS_SUPPLIER_DEVIATION.md` and `data/tool_manifest_poisoned.json` differs from `FILE_HASHES.csv` / catalog hashes. Content still carries the inject (ignore-holds; disposition write). Record drift; do not overwrite challenge files | Security / Domain | FILE_HASHES.csv vs on-disk bytes; INJ-065/066 | Maintainers republish matching hashes | Accepted |
+
+### Decisions
+
+| ID | Decision | Alternatives considered | Owner | Evidence | Date | Status |
+|---|---|---|---|---|---|---|
+| D-501 | Close previously unnamed injects by executable controls plus owning-artefact rows: D02/D03 write-path abstain (INJ-007, 009–012, 015–017, 019–020); in-scope flags INJ-027/049/053/055/062; record 002/041/046/hash tensions. No new research/clinical write workflows | Invent missing CSV rows; expand write-path into D02/D03 | Product / Domain / Evaluation | Artefacts 05, 07, 09, 17; `inject_controls.py`; TEST-INJ-REG | 2026-08-16 | Accepted |
+
+### Cross-references (Phase 5)
+
+| Artefact | Uses |
+|---|---|
+| `submission/src/inject_controls.py` | D-501; A-501..A-504 |
+| `submission/tests/test_inject_controls.py` | TEST-INJ-REG / D02D03 / 027 / 049 / 053 / 055 / 062 / 002 / 041 / 046 |
+| `submission/evidence/INJECT_CONTROL_REGISTER.md` | Generated executable trace (not a second EVIDENCE_MAP) |
+| `submission/artefacts/05_DDD_CONTEXT_MAP.md` | §6.1 D02/D03 named abstentions |
+| `submission/artefacts/07_ONTOLOGY_SEMANTIC_LAYER.md` | INJ-049; INJ-046 / A-503 |
+| `submission/artefacts/09_REQUIREMENTS_TRACEABILITY.md` | FR-A-08; FR-C-06..08; FR-X-06/07; PRI-06; R-901 mitigated |
+| `submission/artefacts/17_PRIVACY_ETHICS.md` | INJ-062; INJ-041 join gap |
+
+### Change record
+
+| Date | Change | By |
+|---|---|---|
+| 2026-08-16 | Phase 5 inject-coverage close: A-501..A-504, D-501; artefacts 05/07/09/17 named gap injects; deterministic inject-control tests | Team 3 |
